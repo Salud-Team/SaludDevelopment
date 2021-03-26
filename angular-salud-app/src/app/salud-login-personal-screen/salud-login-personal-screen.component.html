@@ -1,0 +1,25 @@
+<div id="head">
+    <div id="title">
+        <h2>Login</h2>
+    </div>     
+</div>
+
+<div id="inputbody">
+    <div id="input boxes">
+        <input type="text" placeholder="Email Address" id="EmailBox" #emailbox/>
+        <p>
+        <input type="password" placeholder="Password" id="PasswordBox" #passwordbox/>
+        <p>
+    </div>
+    <div id="buttons">
+        <p>
+            <button (click)="login(emailbox.value, passwordbox.value)"> Login </button>
+        </p>
+    
+    </div>    
+</div>
+
+<div id="passwordCorrectMessage">
+
+</div>
+<p>salud-login-personal-screen works!</p>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-salud-welcome-screen',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaludWelcomeScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  navigateToSignupPage(){
+    this.router.navigate(['/salud-signup-screen']);
+  }
+
+  navigateToLoginPage(){
+    this.router.navigate(['/salud-login-personal-screen']);
+  }
+
+  navigateToMerchantLoginPage(){
+    this.router.navigate(['/salud-login-merchant-screen']);
   }
 
 }
