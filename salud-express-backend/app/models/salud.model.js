@@ -68,6 +68,7 @@ module.exports = mongoose => {
         email: String,
         password: String,
         personalUser: Boolean
+        //pictures: how to store
       },
       { timestamps: true }
     );
@@ -97,7 +98,10 @@ module.exports = mongoose => {
         gifter_id: Number, 
         recipient_id: Number, 
         merchant_id: Number,
-        amount: Number
+        amount: Number, 
+        description: String,
+        //Check if/how we store videos
+        redeemed: Boolean
       },
       { timestamps: true }
     );

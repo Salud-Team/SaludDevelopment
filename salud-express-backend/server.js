@@ -1,11 +1,21 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+var httpProxy = require('http-proxy');
 
 const db = require("./app/models");
 
 const app = express();
 
+
+app.use(function (req, res, next) {
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", 
+  "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+    next();
+  });
 var corsOptions = {
   origin: "http://localhost:8081"
 };
@@ -40,7 +50,7 @@ app.get("/", (req, res) => {
   //res.json();
 });
 
-app.get("/SaludUserData", (req, res) => { 
+app.gett("/SaludUserData", (req, res) => { 
   db.salud_models.SaludUser.find({}, function(err, docs){
     if (err){
       console.log(err);
@@ -53,6 +63,14 @@ app.get("/SaludUserData", (req, res) => {
 });
 
 app.get("/login", (req, res) =>{
+
+}); 
+
+app.get("/createOrder", (req, res) =>{
+
+}); 
+
+app.get("/pullOrders", (req, res) =>{
 
 }); 
 
