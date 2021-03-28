@@ -11,6 +11,7 @@ import { SaludLoadingScreenComponent } from './salud-loading-screen/salud-loadin
 import { RouterModule } from '@angular/router';
 import { SaludLoginPersonalScreenComponent } from './salud-login-personal-screen/salud-login-personal-screen.component';
 import { SaludLoginMerchantScreenComponent } from './salud-login-merchant-screen/salud-login-merchant-screen.component';
+import { SaludPersonalOrderScreenComponent } from './salud-personal-order-screen/salud-personal-order-screen.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { SaludLoginMerchantScreenComponent } from './salud-login-merchant-screen
     SaludSignupScreenComponent,
     SaludLoadingScreenComponent,
     SaludLoginPersonalScreenComponent,
-    SaludLoginMerchantScreenComponent
+    SaludLoginMerchantScreenComponent,
+    SaludPersonalOrderScreenComponent, 
+    SaludPersonalOrderScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { SaludLoginMerchantScreenComponent } from './salud-login-merchant-screen
       {path: 'salud-signup-screen', component: SaludSignupScreenComponent},
       {path: 'salud-login-personal-screen', component: SaludLoginPersonalScreenComponent},
       {path: 'salud-login-merchant-screen', component: SaludLoginMerchantScreenComponent},
+      {path: 'salud-personal-order-screen', component: SaludPersonalOrderScreenComponent},
     ])
     //AppRoutingModule
   ],

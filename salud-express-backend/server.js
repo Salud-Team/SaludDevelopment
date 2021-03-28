@@ -20,7 +20,7 @@ var corsOptions = {
   origin: "http://localhost:8081"
 };
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -37,6 +37,14 @@ db.mongoose
     console.log("Connected to the database!");
     //Why does delete happen before insert in this order
     deleteExistingData(); 
+    /*
+    var k = InsertDatapromise; 
+    k.then(function(result){
+      console.log("Finished Inserting Info."); 
+    }, function(err){
+      console.log(err); 
+    })
+    */
   })
   .catch(err => {
     console.log("Cannot connect to the database!", err);
@@ -50,7 +58,7 @@ app.get("/", (req, res) => {
   //res.json();
 });
 
-app.gett("/SaludUserData", (req, res) => { 
+app.get("/SaludUserData", (req, res) => { 
   db.salud_models.SaludUser.find({}, function(err, docs){
     if (err){
       console.log(err);
@@ -63,15 +71,54 @@ app.gett("/SaludUserData", (req, res) => {
 });
 
 app.get("/login", (req, res) =>{
+});
 
+app.put("/login", (req, res) =>{
+  var email = req.body.email || 'testuser@gmail.com'; 
+  var password = req.body.password || 'test123'; 
+  db.salud_models.SaludUser.find({email: email, password: password, personalUser: true}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.send(docs);
+  }
+  }); 
 }); 
 
 app.get("/createOrder", (req, res) =>{
 
 }); 
 
-app.get("/pullOrders", (req, res) =>{
+app.get("/pullAllOrders", (req, res) =>{
 
+}); 
+
+app.put("/pullUnredeemedOrdersOfUser", (req, res) =>{
+  var id = req.body.id; 
+  db.salud_models.Order.find({gifter_id: id, redeemed: false}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.send(docs);
+  }
+  }); 
+}); 
+
+app.put("/pullUnredeemedOrdersOfMerchant", (req, res) =>{
+  var id = req.body.id; 
+  db.salud_models.Order.find({merchant_id: id, redeemed: false}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.send(docs);
+  }
+  }); 
 }); 
 
 app.get("/PersonalUserData", (req, res) => { 
@@ -114,6 +161,7 @@ app.get("/OrderData", (req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
+  console.log(`Process Port is ${process.env.PORT}`);
 });
 
 
@@ -130,29 +178,31 @@ app.listen(PORT, () => {
 //Setting up original data
 
 
-function deleteExistingData(){
-  db.salud_models.SaludUser.deleteMany({}).then(function(){
+async function deleteExistingData(){
+  await db.salud_models.SaludUser.deleteMany({}).then(function(){
     console.log("SaludUser Data Deleted");
   }).catch(function(error){
     console.log(error);
   });
-  db.salud_models.PersonalUser.deleteMany({}).then(function(){
+  await db.salud_models.PersonalUser.deleteMany({}).then(function(){
     console.log("SaludUser Data Deleted");
   }).catch(function(error){
     console.log(error);
   });
-  db.salud_models.MerchantUser.deleteMany({}).then(function(){
+  await db.salud_models.MerchantUser.deleteMany({}).then(function(){
     console.log("SaludUser Data Deleted");
   }).catch(function(error){
     console.log(error);
   });
-  db.salud_models.Order.deleteMany({}).then(function(){
+  await db.salud_models.Order.deleteMany({}).then(function(){
     console.log("SaludUser Data Deleted");
   }).catch(function(error){
     console.log(error);
   });
+  //return true; 
   insertDummyData();
 }
+
 
 function insertDummyData(){
 
