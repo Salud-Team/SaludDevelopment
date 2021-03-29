@@ -44,6 +44,12 @@ export class SaludLoginPersonalScreenComponent implements OnInit {
       }
       else{
         this.correct = false;
+        console.log("Here");
+        for (var key in res[0]){
+          console.log(key);
+        }
+        console.log(res[0].name);
+        this.crudService.saveSaludUser(res[0].name, res[0].id, res[0].phone_num, res[0].email, res[0].password, res[0].personalUser);
         this.router.navigate(['/salud-personal-order-screen']);
       }
     }); 

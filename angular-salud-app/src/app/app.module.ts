@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { SaludLoginPersonalScreenComponent } from './salud-login-personal-screen/salud-login-personal-screen.component';
 import { SaludLoginMerchantScreenComponent } from './salud-login-merchant-screen/salud-login-merchant-screen.component';
 import { SaludPersonalOrderScreenComponent } from './salud-personal-order-screen/salud-personal-order-screen.component';
+import { CrudService } from './shared/crud.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { SaludPersonalOrderScreenComponent } from './salud-personal-order-screen
     ])
     //AppRoutingModule
   ],
-  providers: [],
+  providers: [CrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

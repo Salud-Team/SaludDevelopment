@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CrudService } from '../shared/crud.service';
 
 @Component({
   selector: 'app-salud-personal-order-screen',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaludPersonalOrderScreenComponent implements OnInit {
 
-  constructor() { }
+  SaludUser; 
+  headerText: string; 
+
+  constructor(public crudService: CrudService, public router: Router) { }
 
   ngOnInit(): void {
+    this.loadInfo();
+  }
+
+  loadInfo(){
+    this.SaludUser = this.crudService.getSaludUser(); 
+    this.headerText = this.SaludUser.name;
   }
 
 }

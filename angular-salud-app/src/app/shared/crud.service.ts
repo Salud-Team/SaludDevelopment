@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { threadId } from 'node:worker_threads';
+
 
 
 interface SaludUser{
@@ -19,8 +19,7 @@ interface SaludUser{
 export class CrudService {
 
   endpoint = 'http://localhost:8080';
-  savedSaludUser: SaludUser;
-
+  savedSaludUser: SaludUser; 
 
   constructor(public httpClient: HttpClient) { }
 
@@ -28,11 +27,31 @@ export class CrudService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }  
+  } 
 
   saveSaludUser(name, id, phonenum, email, password, personalUser){
+    var saludData: SaludUser = {
+      name: name, 
+      id: id,
+      phone_num: phonenum,
+      email: email, 
+      password: password, 
+      personalUser: personalUser
+    }; 
+    this.savedSaludUser = saludData;
+    /*
     this.savedSaludUser.name = name; 
+    this.savedSaludUser.email = email;
+    this.savedSaludUser.id = id; 
+    this.savedSaludUser.password = password; 
+    this.savedSaludUser.phone_num = phonenum; 
+    this.savedSaludUser.personalUser = personalUser; 
+    */
     //stop here
+  }
+
+  getSaludUser(){
+    return this.savedSaludUser; 
   }
 
   getSaludUsers(): Observable<SaludUser> {
