@@ -105,7 +105,7 @@ module.exports = mongoose => {
       },
       { timestamps: true }
     );
-    
+    /*
     SaludUserSchema.method("toJSON", function() {
       const { __v, _id, ...object } = this.toObject();
       object.id = _id;
@@ -129,7 +129,7 @@ module.exports = mongoose => {
       object.id = _id;
       return object;
     });
-    
+    */
     const SaludUser = mongoose.model("SaludUser", SaludUserSchema);
     const PersonalUser = mongoose.model("PersonalUser", PersonalUserSchema);
     const MerchantUser = mongoose.model("MerchantUser", MerchantUserSchema);

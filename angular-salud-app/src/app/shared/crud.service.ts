@@ -13,6 +13,17 @@ interface SaludUser{
   password: String;
   personalUser: Boolean
 }
+
+interface Order{
+  id: Number;
+  gifter_id: Number; 
+  recipient_id: Number; 
+  merchant_id: Number;
+  amount: Number;
+  description: String;
+  //Check if/how we store videos
+  redeemed: Boolean
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -39,15 +50,6 @@ export class CrudService {
       personalUser: personalUser
     }; 
     this.savedSaludUser = saludData;
-    /*
-    this.savedSaludUser.name = name; 
-    this.savedSaludUser.email = email;
-    this.savedSaludUser.id = id; 
-    this.savedSaludUser.password = password; 
-    this.savedSaludUser.phone_num = phonenum; 
-    this.savedSaludUser.personalUser = personalUser; 
-    */
-    //stop here
   }
 
   getSaludUser(){
@@ -87,7 +89,15 @@ export class CrudService {
   }
 
   getUserOrders(id){
-    return this.httpClient.put<SaludUser>(this.endpoint + '/pullUnredeemedOrdersOfUser', {id: id}); 
+    return this.httpClient.put<Order[]>(this.endpoint + '/pullUnredeemedOrdersOfUser', {id: id}); 
+  }
+
+  getAllOrders(){
+    return this.httpClient.get<Order>(this.endpoint + '/OrderData')
+    .pipe(
+      retry(1),
+      catchError(this.processError)
+    );
   }
 
   getOrdersFromMerchantPerspective(id){

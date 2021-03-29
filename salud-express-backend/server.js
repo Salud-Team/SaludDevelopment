@@ -95,8 +95,23 @@ app.get("/pullAllOrders", (req, res) =>{
 
 }); 
 
+app.get("/pullUnredeemedOrdersOfUser", (req, res) =>{
+  var id = req.body.id || 0125; 
+  console.log("In this endpoint"); 
+  db.salud_models.Order.find({gifter_id: id, redeemed: false}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+  }
+  }); 
+});
+
 app.put("/pullUnredeemedOrdersOfUser", (req, res) =>{
   var id = req.body.id; 
+  console.log("In this endpoint"); 
   db.salud_models.Order.find({gifter_id: id, redeemed: false}, function(err, docs){
     if (err){
       console.log(err);
@@ -225,6 +240,23 @@ db.salud_models.MerchantUser.insertMany([{name: 'Food Place 1', id: 9998, locati
 {name: 'Food Place 2', id: 9997, location: "200 Cornet Drive", food_type: "Wine"},
 {name: 'Food Place 3', id: 9967, location: "300 Cornet Drive", food_type: "Beer"}]).then(function(){
   console.log("MerchantUser Data inserted");
+}).catch(function(error){
+  console.log(error);
+});
+db.salud_models.Order.insertMany([
+  {id: 19032, gifter_id: 0123, recipient_id: 0125, merchant_id: 9998, amount: 25, description: "Beer at place. Happy Birthday", redeemed: false},
+  {id: 192032, gifter_id: 0125, recipient_id: 0123, merchant_id: 9998, amount: 25, description: "Thanks for the beer, have your own.", redeemed: false},
+  {id: 90213, gifter_id: 0123, recipient_id: 0125, merchant_id: 9998, amount: 20, description: "Return to sender.", redeemed: true},
+  {id: 403923, gifter_id: 0123, recipient_id: 0125, merchant_id: 9997, amount: 15, description: "Here you go!", redeemed: false},
+  {id: 74384, gifter_id: 0125, recipient_id: 0123, merchant_id: 9997, amount: 60, description: "Wine for my friend", redeemed: false},
+  {id: 935842, gifter_id: 0123, recipient_id: 0125, merchant_id: 9997, amount: 45, description: "Payback", redeemed: false},
+  {id: 9245310, gifter_id: 0125, recipient_id: 0123, merchant_id: 9997, amount: 65, description: "More wine", redeemed: true},
+  {id: 38532, gifter_id: 0123, recipient_id: 0125, merchant_id: 9967, amount: 25, description: "More beer", redeemed: false},
+  {id: 1104924, gifter_id: 0125, recipient_id: 0123, merchant_id: 9967, amount: 90, description: "Stop sending me stuff", redeemed: true},
+  {id: 482045, gifter_id: 0123, recipient_id: 0125, merchant_id: 9967, amount: 25, description: "Cool", redeemed: true},
+  {id: 28465291, gifter_id: 0125, recipient_id: 0123, merchant_id: 9967, amount: 15, description: "Yelp", redeemed: false},
+]).then(function(){
+  console.log("Order Data inserted");
 }).catch(function(error){
   console.log(error);
 });

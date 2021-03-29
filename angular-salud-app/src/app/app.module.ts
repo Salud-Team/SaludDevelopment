@@ -13,6 +13,7 @@ import { SaludLoginPersonalScreenComponent } from './salud-login-personal-screen
 import { SaludLoginMerchantScreenComponent } from './salud-login-merchant-screen/salud-login-merchant-screen.component';
 import { SaludPersonalOrderScreenComponent } from './salud-personal-order-screen/salud-personal-order-screen.component';
 import { CrudService } from './shared/crud.service';
+import { SaludAddRecipientScreenComponent } from './salud-add-recipient-screen/salud-add-recipient-screen.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { CrudService } from './shared/crud.service';
     SaludLoginPersonalScreenComponent,
     SaludLoginMerchantScreenComponent,
     SaludPersonalOrderScreenComponent, 
-    SaludPersonalOrderScreenComponent
+    SaludPersonalOrderScreenComponent, SaludAddRecipientScreenComponent
   ],
   imports: [
     BrowserModule,

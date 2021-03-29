@@ -11,6 +11,7 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
 
   SaludUser; 
   headerText: string; 
+  order: string = "";
 
   constructor(public crudService: CrudService, public router: Router) { }
 
@@ -21,6 +22,20 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
   loadInfo(){
     this.SaludUser = this.crudService.getSaludUser(); 
     this.headerText = this.SaludUser.name;
+    this.crudService.getUserOrders(this.SaludUser.id).subscribe((res: {}) => {
+      if (res == undefined){
+        console.log("Didnt work");
+      }
+      else{
+        console.log(res);
+        var counter = 0; 
+        for (var i in res){
+          this.order += "<p> Order:" + res[counter].id + "Gifter_ID:" + res[counter].gifter_id + "Receiverer_ID:" + res[counter].receiver_id + "Description:" + res[counter].description + "</p>";
+          counter += 1; 
+        }
+      }
+    }); 
+    //console.log(this.crudService.getSaludUsers());
   }
 
 }

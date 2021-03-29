@@ -1,3 +1,9 @@
 <div id="head">
-    <p>{{headerText}}</p>
+    <p>{{headerText}}'s Orders</p>
+</div>
+<p></p>
+<div id="orders" [innerHTML]="order">
+</div>
+<div id="createOrder">
+    <button (click)="createNewOrder()"> Create Order </button>
 </div>
