@@ -221,6 +221,32 @@ app.get("/MerchantUserData", (req, res) => {
   });
 });
 
+app.get("/PullAllMerchants", (req, res) => { 
+  db.salud_models.SaludUser.aggregate([{
+    $match: {
+      personalUser: false
+    }
+  },{
+    $lookup:
+    {
+      from: "merchantusers", 
+      localField: "id", 
+      foreignField: "id", 
+      as: "merchant"
+    }
+  }, {
+    $unwind: "$merchant"
+  }], function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+  }
+  });
+});
+
 app.get("/OrderData", (req, res) => { 
   db.salud_models.Order.find({}, function(err, docs){
     if (err){

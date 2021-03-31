@@ -1,1 +1,17 @@
+<div id="head">
+    <h1>Add Merchant</h1>
+</div>
+<div id="search">
+    <input type="text" id="searchbar" placeholder="Search for a name." (keyup)="filter($event.target.value)">
+    <div id="filter-buttons">
+        <button id="None" name="None" (click)="clearFilters()"> None </button>
+        <input type="checkbox" id="Beer" name="Beer" [(ngModel)]="beerFilter"/> Beer
+        <input type="checkbox" id="Wine" name="Wine" [(ngModel)]="wineFilter"/> Wine
+    </div>
+    <div *ngFor="let item of merchants">
+        <p>
+            <button name="item.name" [innerHTML]='item.name + " " + item.location + " " + item.food_type' (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name + ' ' + item.location + ' ' + item.food_type)"></button>
+        </p>
+    </div>
+</div>
 <p>salud-add-gift-screen works!</p>

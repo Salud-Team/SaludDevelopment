@@ -39,6 +39,21 @@ interface BigOrder{
   merchant: SaludUser
 }
 
+interface Merchant{
+  id: Number;
+  name: String;
+  location: String; 
+  food_type: String
+}
+interface BigMerchant{
+  name: String;
+  id: Number;
+  phone_num: Number; 
+  email: String;
+  password: String;
+  personalUser: Boolean; 
+  merchant: Merchant
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -47,6 +62,7 @@ export class CrudService {
   endpoint = 'http://localhost:8080';
   savedSaludUser: SaludUser; 
   recipient_id: number; 
+  merchant_id: number; 
 
   constructor(public httpClient: HttpClient) { }
 
@@ -98,6 +114,14 @@ export class CrudService {
 
   getMerchantUsers(): Observable<SaludUser> {
     return this.httpClient.get<SaludUser>(this.endpoint + '/MerchantUserData')
+    .pipe(
+      retry(1),
+      catchError(this.processError)
+    )
+  }
+
+  getMerchantUsersWithSaludUserInfo(): Observable<BigMerchant> {
+    return this.httpClient.get<BigMerchant>(this.endpoint + '/PullAllMerchants')
     .pipe(
       retry(1),
       catchError(this.processError)
