@@ -14,6 +14,7 @@ import { SaludLoginMerchantScreenComponent } from './salud-login-merchant-screen
 import { SaludPersonalOrderScreenComponent } from './salud-personal-order-screen/salud-personal-order-screen.component';
 import { CrudService } from './shared/crud.service';
 import { SaludAddRecipientScreenComponent } from './salud-add-recipient-screen/salud-add-recipient-screen.component';
+import { SaludAddGiftScreenComponent } from './salud-add-gift-screen/salud-add-gift-screen.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { SaludAddRecipientScreenComponent } from './salud-add-recipient-screen/s
     SaludLoginPersonalScreenComponent,
     SaludLoginMerchantScreenComponent,
     SaludPersonalOrderScreenComponent, 
-    SaludPersonalOrderScreenComponent, SaludAddRecipientScreenComponent
+    SaludPersonalOrderScreenComponent, 
+    SaludAddRecipientScreenComponent, 
+    SaludAddGiftScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,8 @@ import { SaludAddRecipientScreenComponent } from './salud-add-recipient-screen/s
       {path: 'salud-login-personal-screen', component: SaludLoginPersonalScreenComponent},
       {path: 'salud-login-merchant-screen', component: SaludLoginMerchantScreenComponent},
       {path: 'salud-personal-order-screen', component: SaludPersonalOrderScreenComponent},
+      {path: 'salud-add-recipient-screen', component: SaludAddRecipientScreenComponent},
+      {path: 'salud-add-gift-screen', component: SaludAddGiftScreenComponent}, 
     ])
     //AppRoutingModule
   ],

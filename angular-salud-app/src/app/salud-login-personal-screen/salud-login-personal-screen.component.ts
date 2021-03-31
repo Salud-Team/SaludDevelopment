@@ -14,8 +14,6 @@ export class SaludLoginPersonalScreenComponent implements OnInit {
   password:string; 
   correct: boolean = false; 
 
-  private loginApi = "http://localhost:8080/SaludUserdata"; 
-
   constructor(public crudService: CrudService, public router: Router) {
    }
 

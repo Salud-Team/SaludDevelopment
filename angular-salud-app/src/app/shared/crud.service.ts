@@ -24,6 +24,21 @@ interface Order{
   //Check if/how we store videos
   redeemed: Boolean
 }
+
+interface BigOrder{
+  id: Number;
+  gifter_id: Number; 
+  recipient_id: Number; 
+  merchant_id: Number;
+  amount: Number;
+  description: String;
+  //Check if/how we store videos
+  redeemed: Boolean,
+  gifter: SaludUser, 
+  recipient: SaludUser, 
+  merchant: SaludUser
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +46,7 @@ export class CrudService {
 
   endpoint = 'http://localhost:8080';
   savedSaludUser: SaludUser; 
+  recipient_id: number; 
 
   constructor(public httpClient: HttpClient) { }
 
@@ -58,6 +74,14 @@ export class CrudService {
 
   getSaludUsers(): Observable<SaludUser> {
     return this.httpClient.get<SaludUser>(this.endpoint + '/SaludUserData')
+    .pipe(
+      retry(1),
+      catchError(this.processError)
+    )
+  }
+
+  getOtherPersonalUsers(id): Observable<SaludUser> {
+    return this.httpClient.put<SaludUser>(this.endpoint + '/RecipientScreen', {id: id})
     .pipe(
       retry(1),
       catchError(this.processError)
@@ -98,6 +122,10 @@ export class CrudService {
       retry(1),
       catchError(this.processError)
     );
+  }
+
+  getBigOrdersOfUser(id){
+    return this.httpClient.put<BigOrder[]>(this.endpoint + '/aggregationOrderOfUser', {id: id}); 
   }
 
   getOrdersFromMerchantPerspective(id){

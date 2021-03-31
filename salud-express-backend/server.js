@@ -109,6 +109,54 @@ app.get("/pullUnredeemedOrdersOfUser", (req, res) =>{
   }); 
 });
 
+app.put("/aggregationOrderOfUser", (req, res) =>{
+  var id = req.body.id; 
+  //Right idea, but we're going to use pipelines for multijoins
+  db.salud_models.Order.aggregate([{
+    $match: {
+      gifter_id: id
+    }
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "gifter_id", 
+      foreignField: "id", 
+      as: "gifter"
+    }
+  },{
+    $unwind: "$gifter" 
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "recipient_id", 
+      foreignField: "id", 
+      as: "recipient"
+    }
+  },{
+    $unwind: "$recipient" 
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "merchant_id", 
+      foreignField: "id", 
+      as: "merchant"
+    }
+  },{
+    $unwind: "$merchant" 
+  }], function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+    }
+  });
+});
+
 app.put("/pullUnredeemedOrdersOfUser", (req, res) =>{
   var id = req.body.id; 
   console.log("In this endpoint"); 
@@ -138,6 +186,19 @@ app.put("/pullUnredeemedOrdersOfMerchant", (req, res) =>{
 
 app.get("/PersonalUserData", (req, res) => { 
   db.salud_models.PersonalUser.find({}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+  }
+  });
+});
+
+app.put("/RecipientScreen", (req, res) => { 
+  var id = parseInt(req.body.id); 
+  db.salud_models.SaludUser.find({id: {$ne: id}, personalUser: true}, function(err, docs){
     if (err){
       console.log(err);
     }
