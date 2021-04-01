@@ -13,6 +13,7 @@ export class SaludAddGiftScreenComponent implements OnInit {
   merchants = []; 
   beerFilter: boolean = false;
   wineFilter: boolean = false;
+  //make only one of the check boxes selectable (one should uncheck if another is checked)
 
   constructor(public crudService: CrudService, public router: Router) { }
 
@@ -37,6 +38,15 @@ export class SaludAddGiftScreenComponent implements OnInit {
     }); 
   }
 
+  turnOthersOff(s: string){
+    if(s == "Beer"){
+      this.wineFilter = false;
+    } 
+    else if(s == "Wine"){
+      this.beerFilter = false;
+    } 
+  }
+
   clearFilters(){
     this.beerFilter = false; 
     this.wineFilter = false; 
@@ -57,8 +67,8 @@ export class SaludAddGiftScreenComponent implements OnInit {
   }
 
   showItem(name: string){
-    console.log("here");
-    if (name.includes(this.value) && this.hasBeer(name) && this.hasWine(name)){
+    console.log(this.value + " is this");
+    if ((name.includes(this.value) || this.value == undefined) && this.hasBeer(name) && this.hasWine(name)){
       return true;
     }
     else{
@@ -73,7 +83,7 @@ export class SaludAddGiftScreenComponent implements OnInit {
 
   selectRecipientId(value){
     this.crudService.merchant_id = value; 
-    //this.router.navigate(['/salud-add-gift-screen']);
+    this.router.navigate(['/salud-order-summary-screen']);
   }
 
 }

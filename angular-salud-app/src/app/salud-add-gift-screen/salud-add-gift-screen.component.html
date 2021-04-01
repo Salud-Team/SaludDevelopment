@@ -5,8 +5,8 @@
     <input type="text" id="searchbar" placeholder="Search for a name." (keyup)="filter($event.target.value)">
     <div id="filter-buttons">
         <button id="None" name="None" (click)="clearFilters()"> None </button>
-        <input type="checkbox" id="Beer" name="Beer" [(ngModel)]="beerFilter"/> Beer
-        <input type="checkbox" id="Wine" name="Wine" [(ngModel)]="wineFilter"/> Wine
+        <input type="checkbox" id="Beer" name="Beer" [(ngModel)]="beerFilter" (click)="turnOthersOff('Beer')"/> Beer
+        <input type="checkbox" id="Wine" name="Wine" [(ngModel)]="wineFilter" (click)="turnOthersOff('Wine')"/> Wine
     </div>
     <div *ngFor="let item of merchants">
         <p>
