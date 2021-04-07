@@ -164,6 +164,14 @@ export class CrudService {
     return this.httpClient.post(this.endpoint + '/OrderData', {gifter_id: gifter_id, recipient_id: recipient_id, merchant_id: merchant_id, amount: amount, description: description}, {responseType: 'text'}); 
   }
 
+  createPersonalUser(name, phone_num, email, password, payment_type){
+    return this.httpClient.post(this.endpoint + '/signupPersonal', {name: name, phone_num: phone_num, email: email, password: password, payment_type: payment_type}, {responseType: 'text'});
+  }
+
+  createMerchantUser(name, phone_num, email, password, location, food_type){
+    return this.httpClient.post(this.endpoint + '/signupMerchant', {name: name, phone_num: phone_num, email: email, password: password, location: location, food_type: food_type}, {responseType: 'text'});
+  }
+
   getAllOrders(){
     return this.httpClient.get<Order>(this.endpoint + '/OrderData')
     .pipe(

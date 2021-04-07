@@ -92,6 +92,79 @@ app.put("/login", (req, res) =>{
   }); 
 }); 
 
+app.post("/signupPersonal", (req, res) => {
+  var current_users= []; 
+  db.salud_models.SaludUser.find({}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      for (var i in docs){
+        current_users.push(docs[i].id); 
+      }
+    }
+  });
+  var id = 0; 
+  while (id == 0 && !(current_users.includes(id))){
+    id = Math.floor(Math.random() * 1000000000) % 9999999; 
+    console.log(id);
+  }
+  db.salud_models.SaludUser.insertMany([{id: id, name: req.body.name, phone_num: req.body.phone_num, email: req.body.email, password: req.body.password, personalUser: true}])
+  .then(function(){
+    console.log("New order created");
+    //res.send("Entered successfully."); 
+  }).catch(function(error){
+    console.log(error);
+    //res.send("Entered unsuccessfully."); 
+  });
+  db.salud_models.PersonalUser.insertMany([{id: id, name: req.body.name, payment_type: req.body.payment_type}])
+  .then(function(){
+    console.log("New order created");
+    res.send("Entered successfully."); 
+  }).catch(function(error){
+    console.log(error);
+    res.send("Entered unsuccessfully."); 
+  });
+});
+
+app.post("/signupMerchant", (req, res) => {
+  var current_users= []; 
+  db.salud_models.SaludUser.find({}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      for (var i in docs){
+        current_users.push(docs[i].id); 
+      }
+    }
+  });
+  var id = 0; 
+  while (id == 0 && !(current_users.includes(id))){
+    id = Math.floor(Math.random() * 1000000000) % 9999999; 
+    console.log(id);
+  }
+  db.salud_models.SaludUser.insertMany([{id: id, name: req.body.name, phone_num: req.body.phone_num, email: req.body.email, password: req.body.password, personalUser: true}])
+  .then(function(){
+    console.log("New order created");
+    //res.send("Entered successfully."); 
+  }).catch(function(error){
+    console.log(error);
+    //res.send("Entered unsuccessfully."); 
+  });
+  db.salud_models.MerchantUser.insertMany([{id: id, name: req.body.name, location: req.body.location, food_type: req.body.food_type}])
+  .then(function(){
+    console.log("New order created");
+    res.send("Entered successfully."); 
+  }).catch(function(error){
+    console.log(error);
+    res.send("Entered unsuccessfully."); 
+  });
+});
+
+
 app.get("/createOrder", (req, res) =>{
 
 }); 
@@ -203,6 +276,7 @@ app.get("/PersonalUserData", (req, res) => {
 
 app.put("/RecipientScreen", (req, res) => { 
   var id = parseInt(req.body.id); 
+  console.log(id);
   db.salud_models.SaludUser.find({id: {$ne: id}, personalUser: true}, function(err, docs){
     if (err){
       console.log(err);
