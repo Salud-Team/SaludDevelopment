@@ -63,6 +63,10 @@ export class CrudService {
   savedSaludUser: SaludUser; 
   recipient_id: number; 
   merchant_id: number; 
+  order_description: string; 
+  order_amount: number; 
+  food_type: string; 
+  occasion: string; 
 
   constructor(public httpClient: HttpClient) { }
 
@@ -112,6 +116,22 @@ export class CrudService {
     )
   }
 
+  getUserById(id): Observable<SaludUser>{
+    return this.httpClient.put<SaludUser>(this.endpoint + '/getUserbyId', {id: id})
+    .pipe(
+      retry(1),
+      catchError(this.processError)
+    )
+  }
+
+  getMerchantById(id): Observable<BigMerchant>{
+    return this.httpClient.put<BigMerchant>(this.endpoint + '/getMerchantById', {id: id})
+    .pipe(
+      retry(1),
+      catchError(this.processError)
+    )
+  }
+
   getMerchantUsers(): Observable<SaludUser> {
     return this.httpClient.get<SaludUser>(this.endpoint + '/MerchantUserData')
     .pipe(
@@ -132,12 +152,16 @@ export class CrudService {
     return this.httpClient.put<SaludUser>(this.endpoint + '/login', {email: em, password: pass, personalUser: true}); 
   }
 
-  validateLoginMerchant(em, pass){
+  validateMerchantLogin(em, pass){
     return this.httpClient.put<SaludUser>(this.endpoint + '/login', {email: em, password: pass, personalUser: false}); 
   }
 
   getUserOrders(id){
     return this.httpClient.put<Order[]>(this.endpoint + '/pullUnredeemedOrdersOfUser', {id: id}); 
+  }
+
+  createOrder(gifter_id, recipient_id, merchant_id, amount, description){
+    return this.httpClient.post(this.endpoint + '/OrderData', {gifter_id: gifter_id, recipient_id: recipient_id, merchant_id: merchant_id, amount: amount, description: description}, {responseType: 'text'}); 
   }
 
   getAllOrders(){

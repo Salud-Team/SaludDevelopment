@@ -17,6 +17,8 @@ import { SaludAddRecipientScreenComponent } from './salud-add-recipient-screen/s
 import { SaludAddGiftScreenComponent } from './salud-add-gift-screen/salud-add-gift-screen.component';
 import { SaludOrderSummaryScreenComponent } from './salud-order-summary-screen/salud-order-summary-screen.component';
 import { SaludOrderConfirmationScreenComponent } from './salud-order-confirmation-screen/salud-order-confirmation-screen.component';
+import { SaludThankYouOrderScreenComponent } from './salud-thank-you-order-screen/salud-thank-you-order-screen.component';
+import { SaludMerchantMainScreenComponent } from './salud-merchant-main-screen/salud-merchant-main-screen.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { SaludOrderConfirmationScreenComponent } from './salud-order-confirmatio
     SaludAddRecipientScreenComponent, 
     SaludAddGiftScreenComponent, 
     SaludOrderSummaryScreenComponent, 
-    SaludOrderConfirmationScreenComponent,
+    SaludOrderConfirmationScreenComponent, 
+    SaludThankYouOrderScreenComponent, 
+    SaludMerchantMainScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,8 @@ import { SaludOrderConfirmationScreenComponent } from './salud-order-confirmatio
       {path: 'salud-add-gift-screen', component: SaludAddGiftScreenComponent}, 
       {path: 'salud-order-summary-screen', component: SaludOrderSummaryScreenComponent},
       {path: 'salud-order-confirmation-screen', component: SaludOrderConfirmationScreenComponent},
+      {path: 'salud-thank-you-order-screen', component: SaludThankYouOrderScreenComponent},
+      {path: 'salud-merchant-main-screen', component: SaludMerchantMainScreenComponent}
     ])
     //AppRoutingModule
   ],

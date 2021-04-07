@@ -1,1 +1,43 @@
-<p>salud-order-confirmation-screen works!</p>
+<div id="head">
+    <h1>Order Confirmation</h1>
+</div>
+<div id="order-layout">
+    <div id="recipient-info">
+        <p>To: {{recipient_name}}</p>
+    </div>
+    <div id="location-info">
+        <p>For: </p>
+        <h3>{{recipient_name}}'s {{crudService.occasion}} Celebration</h3>
+        <div id="recipient_information">
+
+        </div>
+    </div>
+    <div id="merchant-info">
+        <h2>{{merchant_name}}</h2>
+        <p>{{merchant_address}}</p>
+    </div>
+    <div id="order-info">
+        <label>{{crudService.food_type}}  {{crudService.order_amount}}</label>
+        <p></p>
+        <div id="pricing-info">
+            <p>Subtotal: {{crudService.order_amount}}</p>
+            <p>Sales Tax: </p>
+            <p>Processing Fee: </p>
+        </div>
+    </div>
+    <div id="checkout">
+        <label>Total:  {{total}}</label>
+        <p></p>
+        <button data-dropdown="drop"> Payment Options </button>
+            <!-- Needs CSS -->
+            <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
+                <li>Apple Pay</li>
+                <li>Google Play Services</li>
+                <li>PayPal</li>
+            </ul>
+    </div>
+    <p></p>
+    <div id="create-order">
+        <button id="order-creation" (click)="placeOrder()">Submit Order</button>
+    </div>
+</div>

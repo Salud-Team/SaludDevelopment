@@ -76,7 +76,12 @@ app.get("/login", (req, res) =>{
 app.put("/login", (req, res) =>{
   var email = req.body.email || 'testuser@gmail.com'; 
   var password = req.body.password || 'test123'; 
-  db.salud_models.SaludUser.find({email: email, password: password, personalUser: true}, function(err, docs){
+  var personalUser = req.body.personalUser;
+  if (personalUser == undefined){
+    personalUser = true; 
+  }
+  console.log(personalUser);
+  db.salud_models.SaludUser.find({email: email, password: password, personalUser: personalUser}, function(err, docs){
     if (err){
       console.log(err);
     }
@@ -209,6 +214,19 @@ app.put("/RecipientScreen", (req, res) => {
   });
 });
 
+app.put("/getUserbyId", (req, res) =>{
+  var id = req.body.id; 
+  db.salud_models.SaludUser.find({id: id}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.send(docs);
+  }
+  }); 
+});
+
 app.get("/MerchantUserData", (req, res) => { 
   db.salud_models.MerchantUser.find({}, function(err, docs){
     if (err){
@@ -247,6 +265,37 @@ app.get("/PullAllMerchants", (req, res) => {
   });
 });
 
+app.put("/GetMerchantById", (req, res) => { 
+  var id = req.body.id; 
+  db.salud_models.SaludUser.aggregate([{
+    $match: {
+      personalUser: false
+    }
+  },{
+    $match: {
+      id: id
+    }
+  },{
+    $lookup:
+    {
+      from: "merchantusers", 
+      localField: "id", 
+      foreignField: "id", 
+      as: "merchant"
+    }
+  }, {
+    $unwind: "$merchant"
+  }], function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+  }
+  });
+});
+
 app.get("/OrderData", (req, res) => { 
   db.salud_models.Order.find({}, function(err, docs){
     if (err){
@@ -256,6 +305,34 @@ app.get("/OrderData", (req, res) => {
       console.log("Second function call : ", docs);
       res.json(docs);
   }
+  });
+});
+
+app.post("/OrderData", (req, res) => {
+  var current_orders = []; 
+  db.salud_models.Order.find({}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      for (var i in docs){
+        current_orders.push(docs[i].id); 
+      }
+    }
+  });
+  var id = 0; 
+  while (id == 0 && !(current_orders.includes(id))){
+    id = Math.floor(Math.random() * 1000000000) % 9999999; 
+    console.log(id);
+  }
+  db.salud_models.Order.insertMany([{id: id, gifter_id: req.body.gifter_id, recipient_id: req.body.recipient_id, merchant_id: req.body.merchant_id, amount: req.body.amount, description: req.body.description, redeemed: false}])
+  .then(function(){
+    console.log("New order created");
+    res.send("Entered successfully."); 
+  }).catch(function(error){
+    console.log(error);
+    res.send("Entered unsuccessfully."); 
   });
 });
 
