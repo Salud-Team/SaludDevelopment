@@ -21,8 +21,8 @@
         <p></p>
         <div id="pricing-info">
             <p>Subtotal: {{crudService.order_amount}}</p>
-            <p>Sales Tax: </p>
-            <p>Processing Fee: </p>
+            <p>Sales Tax:  $0.00</p>
+            <p>Processing Fee: ${{crudService.order_amount/10}}.00</p>
         </div>
     </div>
     <div id="checkout">
