@@ -1,6 +1,65 @@
+// Global 
+#title {
+    background: #F4B167;
+    // padding-top: 110px;
+    // padding-bottom: 58px;
+}
+
 h2 {
-    font-family: Poppins;
-    font-style: normal;
     font-weight: 600;
     font-size: 35px;
+
+    color: #FFFFFF;
+    // line-height: 52px;
+}
+
+// Containers
+#inputbody {
+    margin: auto;
+    // padding-top: 96px;
+    // padding-bottom: 200px;
+
+}
+// #inputboxes {
+//     // padding-bottom: 40px;
+// }
+
+// Header
+// #subtitle-p {
+//     font-weight: normal;
+//     font-size: 14px;
+// }
+
+// Input Fields
+input {
+    width: 311px;
+    height: 43px;
+
+    background: #F7F6F5; 
+    border: none;
+    border-radius: 10px;
+}
+::placeholder {
+    // Font
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: #828282;
+
+    padding: 16px;
+}
+// Buttons
+button {
+    width: 236px;
+    height: 44px;    
+    
+    background: #F4B167;
+    box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
+    border: none;
+    border-radius: 10px;
+
+    // Font
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
 }
