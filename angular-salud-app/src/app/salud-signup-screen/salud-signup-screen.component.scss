@@ -1,0 +1,155 @@
+// Global 
+#head {
+    background: #F4B167;
+
+    padding-left: 32px;
+    padding-top: 110px;
+    padding-bottom: 58px;
+}
+#subtitle {
+    font-size: 14px;
+    color: #FFFFFF;
+
+    padding-top: 10px;
+}
+h2 {
+    font-weight: 600;
+    font-size: 35px;
+
+    color: #FFFFFF;
+    // line-height: 52px;
+}
+
+// Containers
+#inputbody {
+    margin: 32px;
+
+}
+// Input Fields
+// Profile Pic Upload
+// Input Boxes
+#NameBox, #EmailBox, #PhoneBox, #PasswordBox {
+    width: 311px;
+    height: 43px;
+
+    background: #F7F6F5; 
+    border: none;
+    border-radius: 10px;
+
+    // padding-left: 10px;
+}
+#NameBox {
+    margin-bottom: 20px;
+}
+#PhoneBox {
+    margin-bottom: 20px;
+}
+#EmailBox {
+    margin-bottom: 20px;
+}
+#PasswordBox {
+    margin-bottom: 50px;
+}
+#StreetAddressBox, #CityBox, #StateBox, #ZipcodeBox, #FoodTypeBox {
+    width: 311px;
+    height: 33px;
+
+    margin-top: 10px;
+
+    background: #F7F6F5; 
+    border: none;
+    border-radius: 10px;
+}
+::placeholder {
+    // Font
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: #828282;
+
+    padding: 16px;
+}
+
+// Buttons
+#UserButton, #MerchantButton {
+    width: 201px;
+    height: 44px;    
+    
+    background: #FEF6EF;    
+    // box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
+    border: none;
+    border-radius: 9px;
+
+    // Font
+    font-weight: 550;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: #F4B167;
+
+    margin-left: 55px;
+    margin-right: 55px;
+
+}
+#MerchantUserSubmit {
+    width: 239px;
+    height: 44px;    
+    
+    background: #F4B167;
+    box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
+    border: none;
+    border-radius: 10px;
+
+    // Font
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+
+    margin-top: 30px;
+    margin-left: 36px;
+    margin-right: 36px;
+}
+// #file {
+//     background: #F7F6F5;
+//     border: none;
+// }
+#UserButton {
+    margin-bottom: 20px;
+}
+
+#pictureUpload>input {
+    display: none;
+  }
+#pictureUpload {
+    margin-top: -80px;
+    padding-left: 225px;
+}
+
+
+// Select DropDown
+#additional-params-personal {
+    position: relative;
+}
+
+#additional-params-personal select {
+    width: 150px;
+    height: 33px;
+
+    background: #F7F6F5; 
+    border: none;
+    border-radius: 8px;
+
+    // appearance: none;
+    margin: 5px;
+    margin-top: 30px;
+}
+
+select::after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+
+}
