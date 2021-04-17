@@ -1,0 +1,27 @@
+
+#button-signup, #button-login {
+    width: 137px;
+    height: 44px;
+
+    box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.25);
+    border-radius: 8px;
+    border: none;
+
+    // Font
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+}
+
+#merchantbutton {
+    border: none;
+    background: none;
+
+    // Font
+    font-size: 12px;
+    line-height: 15px;
+    color: #F4B167;
+}
+#spanbold {
+    font-weight: 600;
+}

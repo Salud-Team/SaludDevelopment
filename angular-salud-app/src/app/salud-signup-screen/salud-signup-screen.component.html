@@ -1,16 +1,22 @@
+<!-- Possible to make sign up for each type a different page? -->
 <div id="head">
     <div id="title">
         <h2>Sign Up</h2>
-        <p>Let's get started.</p>
-    </div>
-    <div id="pictureUpload">
-		<input type="file" accept="image/gif, image/jpeg, image/png" name="image" id="file" (change)="selectFile($event)">
-        <div><img [src]="url" accept="image/gif, image/jpeg, image/png" *ngIf="url" height="200" width="200" /></div>
-    </div>      
+        <p id="subtitle">Let's get started.</p>
+    </div> 
 </div>
+<!-- HTML CHANGES -->
+<div id="pictureUpload">
+    <label for="file">
+        <img src="../../assets/images/profileupload.png" alt="" width="122px">
+    </label>
 
+    <input type="file" accept="image/gif, image/jpeg, image/png" name="image" id="file" (change)="selectFile($event)">
+    <div><img [src]="url" accept="image/gif, image/jpeg, image/png" *ngIf="url" height="200" width="200" /></div>
+</div>   
+<!-- HTML CHANGES -->  
 <div id="inputbody">
-    <div id="input boxes">
+    <div id="inpu tboxes">
         <input type="text" placeholder="Full Name" id="NameBox" (keyup)="addName($event.target.value)">
         <p>
         <input type="number" placeholder="Phone Number" id="PhoneBox" (keyup)="addPhoneNum($event.target.value)">
@@ -24,9 +30,9 @@
     
     <div id="buttons">
         <p>
-            <button (click)="togglePersonalUser()"> Sign Up as a Personal User </button>
+            <button id="UserButton" (click)="togglePersonalUser()">Sign Up As A User</button>
             <br>
-            <button (click)="toggleMerchantUser()"> Sign Up as a Merchant User </button>
+            <button id="MerchantButton" (click)="toggleMerchantUser()"> Sign Up As A Merchant</button>
         </p>
     
     </div> 

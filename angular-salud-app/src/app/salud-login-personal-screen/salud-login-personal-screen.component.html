@@ -1,14 +1,12 @@
 <div id="head">
     <div id="title">
         <h2>Login</h2>
+        <p id="subtitle">Welcome back!</p>
     </div>  
-    <!-- <div id="subtite">
-        <p id="subtitle-p">Welcome back!</p>
-    </div>    -->
 </div>
 
 <div id="inputbody">
-    <div id="inputboxes">
+    <div id="input boxes">
         <input type="text" placeholder="Email Address" id="EmailBox" #emailbox/>
         <p>
         <input type="password" placeholder="Password" id="PasswordBox" #passwordbox/>
@@ -18,7 +16,6 @@
         <p>
             <button (click)="login(emailbox.value, passwordbox.value)">Login</button>
         </p>
-    
     </div>    
 </div>
 
