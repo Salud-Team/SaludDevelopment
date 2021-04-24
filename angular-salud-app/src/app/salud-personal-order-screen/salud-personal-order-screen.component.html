@@ -1,9 +1,25 @@
 <div id="head">
     <p>{{headerText}}'s Orders</p>
 </div>
-<p></p>
-<div id="orders" [innerHTML]="order">
-</div>
-<div id="createOrder">
-    <button (click)="createNewOrder()"> Create Order </button>
+<p><br></p>
+<div id="allOrders">
+    <div id="clickableLabels">
+        <label id="giftedOrders" (click)="renderGifted = true">Your Gifted Orders</label>
+        <p></p>
+        <label id="receivedOrders" (click)="renderGifted = false">Your Received Orders</label>
+    </div>
+    <div id="outer-orders-gifted" *ngIf="renderGifted == true">
+        <div id="orders-gifted" [innerHTML]="order"></div>
+        <p><br></p>
+        <div id="createOrder">
+            <button (click)="createNewOrder()"> Create Order </button>
+        </div>
+    </div>
+    <div id="outer-orders-received"  *ngIf="renderGifted == false">
+        <div id="orders-received" [innerHTML]="orderReceived"></div>
+        <p><br></p>
+        <div id="redeemOrder">
+            <button (click)="redeemAllOrders()"> Redeem Order </button>
+        </div>
+    </div>
 </div>

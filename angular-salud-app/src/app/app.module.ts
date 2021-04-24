@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {OverlayModule} from '@angular/cdk/overlay'
 
 //import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { SaludOrderSummaryScreenComponent } from './salud-order-summary-screen/s
 import { SaludOrderConfirmationScreenComponent } from './salud-order-confirmation-screen/salud-order-confirmation-screen.component';
 import { SaludThankYouOrderScreenComponent } from './salud-thank-you-order-screen/salud-thank-you-order-screen.component';
 import { SaludMerchantMainScreenComponent } from './salud-merchant-main-screen/salud-merchant-main-screen.component';
+import { SaludRedeemOrderScreenComponent } from './salud-redeem-order-screen/salud-redeem-order-screen.component';
+import { SaludRedeemSummaryScreenComponent } from './salud-redeem-summary-screen/salud-redeem-summary-screen.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +38,15 @@ import { SaludMerchantMainScreenComponent } from './salud-merchant-main-screen/s
     SaludOrderSummaryScreenComponent, 
     SaludOrderConfirmationScreenComponent, 
     SaludThankYouOrderScreenComponent, 
-    SaludMerchantMainScreenComponent,
+    SaludMerchantMainScreenComponent, 
+    SaludRedeemOrderScreenComponent, 
+    SaludRedeemSummaryScreenComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule, 
     HttpClientModule,
+    OverlayModule,
     RouterModule.forRoot([
       {path: '', component: SaludLoadingScreenComponent}, 
       {path: 'salud-loading-screen', component: SaludLoadingScreenComponent},
@@ -54,7 +60,9 @@ import { SaludMerchantMainScreenComponent } from './salud-merchant-main-screen/s
       {path: 'salud-order-summary-screen', component: SaludOrderSummaryScreenComponent},
       {path: 'salud-order-confirmation-screen', component: SaludOrderConfirmationScreenComponent},
       {path: 'salud-thank-you-order-screen', component: SaludThankYouOrderScreenComponent},
-      {path: 'salud-merchant-main-screen', component: SaludMerchantMainScreenComponent}
+      {path: 'salud-merchant-main-screen', component: SaludMerchantMainScreenComponent},
+      {path: 'salud-redeem-order-screen', component: SaludRedeemOrderScreenComponent},
+      {path: 'salud-redeem-summary-screen', component: SaludRedeemSummaryScreenComponent},
     ])
     //AppRoutingModule
   ],

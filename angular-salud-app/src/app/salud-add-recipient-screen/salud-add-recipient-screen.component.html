@@ -1,6 +1,19 @@
 <div id="head">
     <h1>Add Recipients</h1>
 </div>
+<div>
+    <button (click)="toggleOverlay()">
+        Add Non Salud Member
+     </button>
+     <div id="overlay" *ngIf="isOpen" >
+        <ul class="example-overlay">
+           <li><input type="text"  placeholder="Name" #name></li>
+           <li><input type="text"  placeholder="Email" #email></li>
+           <li><input type="number"  placeholder="PhoneNumber" #phoneNum></li>
+           <li><button (click)="submitEmail(name.value, email.value, phoneNum.value)">Submit</button></li>
+        </ul>
+    </div>
+</div>
 <div id="search">
     <input type="text" id="searchbar" placeholder="Search for a name." (keyup)="filter($event.target.value)">
     <div *ngFor="let item of recipientHTMLList">
