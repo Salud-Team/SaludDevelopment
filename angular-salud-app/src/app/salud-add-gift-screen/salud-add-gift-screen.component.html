@@ -1,16 +1,21 @@
-<div id="head">
-    <h1>Add Merchant</h1>
-</div>
-<div id="search">
-    <input type="text" id="searchbar" placeholder="Search for a name." (keyup)="filter($event.target.value)">
-    <div id="filter-buttons">
-        <button id="None" name="None" (click)="clearFilters()"> None </button>
-        <input type="checkbox" id="Beer" name="Beer" [(ngModel)]="beerFilter" (click)="turnOthersOff('Beer')"/> Beer
-        <input type="checkbox" id="Wine" name="Wine" [(ngModel)]="wineFilter" (click)="turnOthersOff('Wine')"/> Wine
+<div class="screen-container">
+    <div id="head">
+        <h1><span id="header1">Add</span><span id="header2"> Merchant</span></h1>
     </div>
-    <div *ngFor="let item of merchants">
-        <p>
-            <button name="item.name" [innerHTML]='item.name + " " + item.location + " " + item.food_type' (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name + ' ' + item.location + ' ' + item.food_type)"></button>
-        </p>
+    <div id="search">
+        <div id="search-container"> 
+            <img id="search-icon" src="../../assets/images/searchIcon.svg" alt="">
+            <input type="text" id="searchbar" placeholder="Search" (keyup)="filter($event.target.value)">
+        </div>      
+        <div id="filter-buttons">
+            <button id="None" name="None" (click)="clearFilters()">None</button>
+            <span id="checkdiv"><input type="checkbox" id="checkbox" name="Beer" [(ngModel)]="beerFilter" (click)="turnOthersOff('Beer')"/>Beer</span>
+            <span id="checkdiv"><input type="checkbox" id="checkbox" name="Wine" [(ngModel)]="wineFilter" (click)="turnOthersOff('Wine')"/>Wine</span>
+        </div>
+        <div *ngFor="let item of merchants">
+            <p>
+                <button name="item.name" [innerHTML]='item.name + " " + item.location + " " + item.food_type' (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name + ' ' + item.location + ' ' + item.food_type)"></button>
+            </p>
+        </div>
     </div>
 </div>

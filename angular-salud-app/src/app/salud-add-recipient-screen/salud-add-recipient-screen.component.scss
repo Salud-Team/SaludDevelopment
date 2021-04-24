@@ -1,21 +1,120 @@
-#overlay {
-    position: fixed;
-    display: block;
-    width: 20%;
-    height: 20%;
-    background-color: rgba(0,0,0,.75);
-    z-index: 2;
-    cursor: pointer;
-  }
+#head {
+    padding-bottom: 22px;
+}
+#header1 {
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;    
+}
+#header2 {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;   
+}
 
-  #text{
+#search-container {
+    position: relative;
+    display: flex;
+
+    padding-bottom: 28px;
+}
+#search-icon {
     position: absolute;
+    top: 12px;
+    left: 15px;
+}
+#searchbar {
+    width: 315px;
+    height: 34px;
+    background: #F7F6F5;
+    
+    border-radius: 10px;
+    border: none;
+
+    padding-left: 44px;
+}
+::placeholder {
+    font-size: 14px;
+    color: #828282;
+}
+
+// Overlay
+#overlay-div {
+    // main screen (before clicked)
+    text-align: center;
+}
+#overlay {
+    background-color: rgba(130,130,130,.25);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    cursor: pointer;
+}
+#overlay-container {
+    position: absolute;
+    margin: 0;
     top: 50%;
-    bottom: 50%;
     left: 50%;
-    right: 50%;
-    font-size: 50px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-  }
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+#overlay-content {
+    width: 322px;
+    height: 446px;
+
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+#inputbody {
+    position: absolute;
+    // position: fixed; (also works?)
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#overlay-header {
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+    /* Gray 1 */
+    color: #292929;
+    margin-bottom: 34px;
+}
+#overlay-input {
+    width: 276px;
+    height: 43px;
+    background: #F7F6F5;
+    border-radius: 10px;
+    border: none;
+
+    margin-bottom: 30px;
+    padding-left: 14px;
+
+    font-weight: normal;
+    font-size: 12px;
+    /* Gray 3 */
+    color: #828282;
+}
+#overlay-btn {
+    width: 200px;
+    height: 44px;
+
+    /* Orange 1 */
+    background: #F4B167;
+    box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
+    border-radius: 12px;
+    border: none;
+
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    /* White */
+    color: #FFFFFF;
+
+    margin-top: 5px;
+}
