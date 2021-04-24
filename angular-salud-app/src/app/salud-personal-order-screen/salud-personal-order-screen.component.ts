@@ -12,6 +12,8 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
   SaludUser; 
   headerText: string; 
   order: string = "";
+  orderReceived: string = "";
+  renderGifted: boolean = false; 
 
   constructor(public crudService: CrudService, public router: Router) { }
 
@@ -35,11 +37,28 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
         }
       }
     }); 
+    this.crudService.getReceievedBigOrdersOfUser(this.SaludUser.id).subscribe((res: {}) => {
+      if (res == undefined){
+        console.log("Didnt work");
+      }
+      else{
+        console.log(res);
+        var counter = 0; 
+        for (var i in res){
+          this.orderReceived += "<p> Order Number:" + res[counter].id + " Gifter_ID:" + res[counter].gifter.name + " Receiverer_ID:" + res[counter].recipient.name  + " Description:" + res[counter].description + "</p>";
+          counter += 1; 
+        }
+      }
+    });
     //console.log(this.crudService.getSaludUsers());
   }
 
   createNewOrder(){
     this.router.navigate(['/salud-add-recipient-screen']);
+  }
+
+  redeemAllOrders(){
+    this.router.navigate(['/salud-redeem-order-screen']);
   }
 
 }

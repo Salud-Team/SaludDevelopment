@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../shared/crud.service';
@@ -12,12 +13,25 @@ export class SaludAddRecipientScreenComponent implements OnInit {
   chosenRecipientId: number; 
   recipientHTMLList = []; 
   value: string = ""; 
+  isOpen: boolean = false; 
+  style: string = "none";
 
   constructor(public crudService: CrudService, public router: Router) { }
 
   ngOnInit(): void {
     this.pullAllUsersIntoSearchDiv(); 
   }
+
+  toggleOverlay(){
+    this.isOpen = !this.isOpen; 
+    if (this.isOpen == false){
+      this.style= "block";
+    }
+    else{
+      this.style= "none";
+    }
+  }
+
 
   pullAllUsersIntoSearchDiv(){
     this.crudService.getOtherPersonalUsers(this.crudService.getSaludUser().id).subscribe((res: {}) => {
@@ -41,7 +55,6 @@ export class SaludAddRecipientScreenComponent implements OnInit {
   }
 
   showItem(name: string){
-    console.log("here");
     if (name.includes(this.value)){
       return true;
     }
@@ -59,6 +72,11 @@ export class SaludAddRecipientScreenComponent implements OnInit {
     this.chosenRecipientId = value; 
     console.log(value);
     this.crudService.recipient_id = value; 
+    this.router.navigate(['/salud-add-gift-screen']);
+  }
+
+  submitEmail(name, email, num){
+    //sends email to people, does this on the backend.
     this.router.navigate(['/salud-add-gift-screen']);
   }
 

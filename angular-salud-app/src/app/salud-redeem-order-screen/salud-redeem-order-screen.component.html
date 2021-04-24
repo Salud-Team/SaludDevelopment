@@ -1,0 +1,12 @@
+<div id="head">
+    <h1>Redeem Gifts</h1>
+</div>
+<div id="search">
+    <input type="text" id="searchbar" placeholder="Search for a name." (keyup)="filter($event.target.value)">
+    <div *ngFor="let item of giftedHTMLList">
+        <p>
+            <button name="item.title" [innerHTML]="item.title" (click)="selectRecipientId(item.order_id)" *ngIf="showItem(item.title)"></button>
+        </p>
+    </div>
+</div>
+<p>salud-redeem-order-screen works!</p>

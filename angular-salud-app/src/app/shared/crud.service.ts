@@ -67,6 +67,7 @@ export class CrudService {
   order_amount: number; 
   food_type: string; 
   occasion: string; 
+  redeemed_order: string; 
 
   constructor(public httpClient: HttpClient) { }
 
@@ -160,6 +161,10 @@ export class CrudService {
     return this.httpClient.put<Order[]>(this.endpoint + '/pullUnredeemedOrdersOfUser', {id: id}); 
   }
 
+  getReceivedUserOrders(id){
+    return this.httpClient.put<Order[]>(this.endpoint + '/pullUnredeemedOrdersGivenToUser', {id: id}); 
+  }
+
   createOrder(gifter_id, recipient_id, merchant_id, amount, description){
     return this.httpClient.post(this.endpoint + '/OrderData', {gifter_id: gifter_id, recipient_id: recipient_id, merchant_id: merchant_id, amount: amount, description: description}, {responseType: 'text'}); 
   }
@@ -182,6 +187,14 @@ export class CrudService {
 
   getBigOrdersOfUser(id){
     return this.httpClient.put<BigOrder[]>(this.endpoint + '/aggregationOrderOfUser', {id: id}); 
+  }
+
+  getReceievedBigOrdersOfUser(id){
+    return this.httpClient.put<BigOrder[]>(this.endpoint + '/aggregationReceivedOrderOfUser', {id: id}); 
+  }
+
+  getCurrentReceievedBigOrdersOfUser(id){
+    return this.httpClient.put<BigOrder[]>(this.endpoint + '/aggregationReceivedValidOrderOfUser', {id: id}); 
   }
 
   getOrdersFromMerchantPerspective(id){
