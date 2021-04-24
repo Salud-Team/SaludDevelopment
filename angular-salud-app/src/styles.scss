@@ -7,8 +7,25 @@
     margin: 0;
 }
 
-// Global Colors
+li {
+    list-style: none;
+}
 
+.screen-container {
+    padding: 28px;
+    padding-top: 56px;
+}
 
-// @media only screen and (max-width: 375px) {
-// }
+#largebtn {
+    width: 297px;
+    height: 44px;
+
+    background: #F4B167;
+    box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
+    border-radius: 12px;
+    border: none;
+
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+}
