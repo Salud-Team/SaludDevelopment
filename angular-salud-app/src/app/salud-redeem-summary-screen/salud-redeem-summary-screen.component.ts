@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CrudService } from '../shared/crud.service';
 
 @Component({
   selector: 'app-salud-redeem-summary-screen',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaludRedeemSummaryScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(public crudService: CrudService, public router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  getOrderInfo(){
+    this.crudService.getOrder(this.crudService.redeemed_order).subscribe((res: {}) => {
+      if (res == undefined){
+
+      }
+      else{
+
+      }
+    }); 
   }
 
 }

@@ -2,6 +2,9 @@
     <h1>Add Merchant</h1>
 </div>
 <div id="search">
+    <select id="cities" [(ngModel)]="filtered_city">
+        <option *ngFor="let option of cities" value="option">{{option}}</option>
+    </select>
     <input type="text" id="searchbar" placeholder="Search for a name." (keyup)="filter($event.target.value)">
     <div id="filter-buttons">
         <button id="None" name="None" (click)="clearFilters()"> None </button>

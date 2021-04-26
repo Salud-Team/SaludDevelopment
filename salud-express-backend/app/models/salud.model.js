@@ -67,7 +67,8 @@ module.exports = mongoose => {
         phone_num: Number, 
         email: String,
         password: String,
-        personalUser: Boolean
+        personalUser: Boolean,
+        picture: String
         //pictures: how to store
       },
       { timestamps: true }
@@ -87,6 +88,9 @@ module.exports = mongoose => {
         id: Number,
         name: String,
         location: String, 
+        city: String, 
+        state: String, 
+        zip_code: String,
         food_type: String
       },
       { timestamps: true }
@@ -101,7 +105,9 @@ module.exports = mongoose => {
         amount: Number, 
         description: String,
         //Check if/how we store videos
-        redeemed: Boolean
+        redeemed: Boolean, 
+        qrCode: String,
+        video: String,
       },
       { timestamps: true }
     );

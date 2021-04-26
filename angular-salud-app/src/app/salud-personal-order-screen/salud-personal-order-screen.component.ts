@@ -14,6 +14,7 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
   order: string = "";
   orderReceived: string = "";
   renderGifted: boolean = false; 
+  renderPersonal: boolean = false; 
 
   constructor(public crudService: CrudService, public router: Router) { }
 
@@ -32,11 +33,13 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
         console.log(res);
         var counter = 0; 
         for (var i in res){
-          this.order += "<p> Order Number:" + res[counter].id + " Gifter_ID:" + res[counter].gifter.name + " Receiverer_ID:" + res[counter].recipient.name  + " Description:" + res[counter].description + "</p>";
+          this.order += "<div class='order-label'><label> You sent to " + res[counter].recipient.name  + " items from " + res[counter].merchant.name + ".<p><label></div>";
           counter += 1; 
         }
       }
     }); 
+    //Add a new function that separates redeemed from unredeemed to properly sort them for user
+    //Then make them buttons like how redeem order works currently. 
     this.crudService.getReceievedBigOrdersOfUser(this.SaludUser.id).subscribe((res: {}) => {
       if (res == undefined){
         console.log("Didnt work");
@@ -45,7 +48,7 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
         console.log(res);
         var counter = 0; 
         for (var i in res){
-          this.orderReceived += "<p> Order Number:" + res[counter].id + " Gifter_ID:" + res[counter].gifter.name + " Receiverer_ID:" + res[counter].recipient.name  + " Description:" + res[counter].description + "</p>";
+          this.orderReceived += "<div class='order-label'><label>" + res[counter].gifter.name + " sent to You " + "items from " + res[counter].merchant.name +  ".<p><label></div>";
           counter += 1; 
         }
       }
