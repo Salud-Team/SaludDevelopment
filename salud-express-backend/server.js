@@ -485,15 +485,33 @@ app.get("/PullAllMerchants", (req, res) => {
 });
 
 app.put("/OrderQRCodes", (req, res) => {
-  var x = turnOrderIntoQRCodes(req.body.id||38532);
-  db.salud_models.Order.find({}, function(err, docs){
+  var code = "";
+  var r;  
+  db.salud_models.Order.find({id: req.body.id}, function(err, docs){
     if (err){
       console.log(err);
     }
     else{
-      console.log("Second function call : ", docs);
-      res.json(docs);
-  }
+      code = docs[0].qrCode;
+      r = docs; 
+      if(code == undefined){
+        console.log("Im in here");
+        var x = turnOrderIntoQRCodes(req.body.id||38532);
+        db.salud_models.Order.find({id: x}, function(err, docs){
+          if (err){
+            console.log(err);
+          }
+          else{
+            console.log("Second function call : ", docs);
+            res.json(docs);
+          }
+        });
+      }
+      else{
+        console.log("Here now?");
+        res.json(r);
+      }
+    }
   });
 })
 
@@ -595,6 +613,7 @@ app.post("/OrderData", (req, res) => {
   db.salud_models.Order.insertMany([{id: id, gifter_id: req.body.gifter_id, recipient_id: req.body.recipient_id, merchant_id: req.body.merchant_id, amount: req.body.amount, description: req.body.description, redeemed: false}])
   .then(function(){
     console.log("New order created");
+
     res.send("Entered successfully."); 
   }).catch(function(error){
     console.log(error);

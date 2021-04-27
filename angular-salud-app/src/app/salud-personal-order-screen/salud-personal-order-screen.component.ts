@@ -12,7 +12,7 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
   SaludUser; 
   headerText: string; 
   order: string = "";
-  orderReceived: string = "";
+  orderReceived = [];
   renderGifted: boolean = false; 
   renderPersonal: boolean = false; 
 
@@ -33,7 +33,8 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
         console.log(res);
         var counter = 0; 
         for (var i in res){
-          this.order += "<div class='order-label'><label> You sent to " + res[counter].recipient.name  + " items from " + res[counter].merchant.name + ".<p><label></div>";
+          this.order += "<div class='order-label'><label> You sent to " + res[counter].recipient.name  + " items from " + res[counter].merchant.name + ".<p>" 
+          + "<img width='50px' height='25px' src=" + "\'" + res[counter].gifter.picture + "/>" + "<img width='50px' height='25px' src=" + "\'" + res[counter].recipient.picture + "/>" +  "<label></div>";
           counter += 1; 
         }
       }
@@ -48,12 +49,33 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
         console.log(res);
         var counter = 0; 
         for (var i in res){
-          this.orderReceived += "<div class='order-label'><label>" + res[counter].gifter.name + " sent to You " + "items from " + res[counter].merchant.name +  ".<p><label></div>";
+          var newReceivedOrder = {
+            id: res[counter].id, 
+            gifter_name: res[counter].gifter.name, 
+            recipient_name: res[counter].recipient.name, 
+            gifter_pic: res[counter].gifter.picture, 
+            recipient_pic: res[counter].recipient.picture, 
+            merchant_name: res[counter].merchant.name
+          }
+          this.orderReceived.push(newReceivedOrder); 
+          //this.orderReceived += "<div class='order-label'><label (click)='Hi()'>" + res[counter].gifter.name + " sent to You " + "items from " + res[counter].merchant.name +  ".<p>" 
+          //+ "<img width='50px' height='25px' src=" + "\'" + res[counter].gifter.picture + "/>" + "<img width='50px' height='25px' src=" + "\'" + res[counter].recipient.picture + "/>" +  "<label></div>";
           counter += 1; 
         }
       }
     });
     //console.log(this.crudService.getSaludUsers());
+  }
+
+  Hi(){
+    console.log("Hello");
+  }
+
+  selectRecipientId(value){
+    //this.chosenRecipientId = value; 
+    console.log(value);
+    this.crudService.redeemed_order = value; 
+    this.router.navigate(['/salud-redeem-summary-screen']);
   }
 
   createNewOrder(){

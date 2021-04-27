@@ -9,20 +9,37 @@ import { CrudService } from '../shared/crud.service';
 })
 export class SaludRedeemSummaryScreenComponent implements OnInit {
 
+  qrCode: any; 
+  picture: string = "/angular-salud-app/src/assets/images/giftBox.png"; 
+
   constructor(public crudService: CrudService, public router: Router) { }
 
   ngOnInit(): void {
+    this.getOrderInfo();
   }
 
   getOrderInfo(){
-    this.crudService.getOrder(this.crudService.redeemed_order).subscribe((res: {}) => {
+    this.crudService.createOrderQRCode(this.crudService.redeemed_order).subscribe((res: {}) => {
       if (res == undefined){
-
+        console.log("Server not up");
       }
-      else{
-
+      else{ 
+        console.log("Created QR Code");
       }
     }); 
   }
+
+  loadOrderQRCode(){
+    this.crudService.createOrderQRCode(this.crudService.redeemed_order).subscribe((res: {}) => {
+      if (res == undefined){
+        console.log("Server not up");
+      }
+      else{ 
+        this.qrCode = res[0].qrCode; 
+        this.picture = this.qrCode; 
+      }
+    }); 
+  }
+
 
 }

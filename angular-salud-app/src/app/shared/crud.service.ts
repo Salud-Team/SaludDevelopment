@@ -186,6 +186,11 @@ export class CrudService {
     return this.httpClient.post(this.endpoint + '/OrderData', {gifter_id: gifter_id, recipient_id: recipient_id, merchant_id: merchant_id, amount: amount, description: description}, {responseType: 'text'}); 
   }
 
+  createOrderQRCode(id): Observable<Order>{
+    return this.httpClient.put<Order>(this.endpoint + '/OrderQRCodes', {id: id}); 
+  }
+
+
   createPersonalUser(name, phone_num, email, password, payment_type, picture){
     return this.httpClient.post(this.endpoint + '/signupPersonal', {name: name, phone_num: phone_num, email: email, password: password, payment_type: payment_type, picture: picture||""}, {responseType: 'text'});
   }
