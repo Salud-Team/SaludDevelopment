@@ -36,7 +36,7 @@
         <br>
         <textarea id="description" placeholder="Type Message Here"></textarea>
         <p></p>
-        <button id="record-video"> Record a Video </button>
+        <input type="file" id="record-video" (change)="selectFile($event)" />
     </div>
     <p></p>
     <div id="order-checkout">

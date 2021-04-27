@@ -75,6 +75,7 @@ export class CrudService {
   order_amount: number; 
   food_type: string; 
   occasion: string; 
+  video_link: string; 
   redeemed_order: string; 
 
   constructor(public httpClient: HttpClient) { }
@@ -182,8 +183,8 @@ export class CrudService {
     return this.httpClient.put<Order[]>(this.endpoint + '/pullUnredeemedOrdersGivenToUser', {id: id}); 
   }
 
-  createOrder(gifter_id, recipient_id, merchant_id, amount, description){
-    return this.httpClient.post(this.endpoint + '/OrderData', {gifter_id: gifter_id, recipient_id: recipient_id, merchant_id: merchant_id, amount: amount, description: description}, {responseType: 'text'}); 
+  createOrder(gifter_id, recipient_id, merchant_id, amount, description, video_link){
+    return this.httpClient.post(this.endpoint + '/OrderData', {gifter_id: gifter_id, recipient_id: recipient_id, merchant_id: merchant_id, amount: amount, description: description, video: video_link}, {responseType: 'text'}); 
   }
 
   createOrderQRCode(id): Observable<Order>{

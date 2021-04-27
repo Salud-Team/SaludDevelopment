@@ -4,7 +4,7 @@
     </div>
     <div id="search">
       <select id="cities" [(ngModel)]="filtered_city">
-        <option *ngFor="let option of cities" value="option">{{option}}</option>
+        <option *ngFor="let option of cities" value={{option}}>{{option}}</option>
       </select>
         <div id="search-container"> 
             <img id="search-icon" src="../../assets/images/searchIcon.svg" alt="">
@@ -12,12 +12,17 @@
         </div>      
         <div id="filter-buttons">
             <button id="None" name="None" (click)="clearFilters()">None</button>
-            <span id="checkdiv"><input type="checkbox" id="checkbox" name="Beer" [(ngModel)]="beerFilter" (click)="turnOthersOff('Beer')"/>Beer</span>
-            <span id="checkdiv"><input type="checkbox" id="checkbox" name="Wine" [(ngModel)]="wineFilter" (click)="turnOthersOff('Wine')"/>Wine</span>
+            <span id="checkdiv"><button name="Beer" (click)="turnOthersOff('Beer')">Beer</button></span>
+            <span id="checkdiv"><button type="checkbox" id="checkbox" name="Wine" (click)="turnOthersOff('Wine')">Wine </button></span>
         </div>
         <div *ngFor="let item of merchants">
             <p>
-                <button name="item.name" [innerHTML]='item.name + " " + item.location + " " + item.food_type' (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name + ' ' + item.location + ' ' + item.food_type)"></button>
+                <label name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name + ' ' + item.location + ' ' + item.city + ', ' + item.state + ' ' + item.zip_code + ' ' + item.food_type)">
+                    {{item.name}}
+                    <p></p>
+                    Serves: {{item.food_type}}
+                    <p></p>
+                    Address: {{item.location}} {{item.city}}, {{item.state}} {{item.zip_code}}</label>
             </p>
         </div>
     </div>

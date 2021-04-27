@@ -6,14 +6,17 @@
         <div id="search-container"> 
             <img id="search-icon" src="../../assets/images/searchIcon.svg" alt="">
             <input type="text" id="searchbar" placeholder="Search" (keyup)="filter($event.target.value)">
-        </div>        <div *ngFor="let item of recipientHTMLList">
+        </div>        
+        <div *ngFor="let item of recipientHTMLList">
             <p>
-                <button name="item.name" [innerHTML]="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)"></button>
+                <label name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)">
+                    <img width="50px" height="50px" src={{item.picture}}> {{item.name}}
+                </label>
             </p>
         </div>
     </div>
     <div id="overlay-div">
-        <button id="largebtn" (click)="toggleOverlay()">
+        <button id="largebtn" (click)="toggleOverlay()" (clickOutside)="toggleFalse($event)">
             Add Contact
          </button>
          <div id="overlay" *ngIf="isOpen" >
