@@ -15,8 +15,14 @@
     <div><img [src]="url" accept="image/gif, image/jpeg, image/png" *ngIf="url" height="200" width="200" /></div>
 </div>   
 <!-- HTML CHANGES -->  
+<div id="buttons">
+    <p>
+        <label id="UserButton" (click)="togglePersonalUser()">Personal User </label>
+        <label id="MerchantButton" (click)="toggleMerchantUser()">Merchant User </label>
+    </p>
+</div> 
 <div id="inputbody">
-    <div id="inpu tboxes">
+    <div id="inputboxes">
         <input type="text" placeholder="Full Name" id="NameBox" (keyup)="addName($event.target.value)">
         <p>
         <input type="number" placeholder="Phone Number" id="PhoneBox" (keyup)="addPhoneNum($event.target.value)">
@@ -26,16 +32,6 @@
         <input type="text" placeholder="Password" id="PasswordBox" (keyup)="addPassword($event.target.value)">
         <p>
     </div>
-    
-    
-    <div id="buttons">
-        <p>
-            <button id="UserButton" (click)="togglePersonalUser()">Sign Up As A User</button>
-            <br>
-            <button id="MerchantButton" (click)="toggleMerchantUser()"> Sign Up As A Merchant</button>
-        </p>
-    
-    </div> 
     <div id="additional-params-personal" *ngIf="showPersonalUserInfo">
         <select id="payment_types" [(ngModel)]="chosen_option">
             <option *ngFor="let option of options" value="{{option}}">{{option}}</option>

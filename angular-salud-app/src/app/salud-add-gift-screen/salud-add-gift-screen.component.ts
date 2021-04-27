@@ -13,6 +13,8 @@ export class SaludAddGiftScreenComponent implements OnInit {
   merchants = []; 
   beerFilter: boolean = false;
   wineFilter: boolean = false;
+  cities = []; 
+  filtered_city: string = "" ;
   //make only one of the check boxes selectable (one should uncheck if another is checked)
 
   constructor(public crudService: CrudService, public router: Router) { }

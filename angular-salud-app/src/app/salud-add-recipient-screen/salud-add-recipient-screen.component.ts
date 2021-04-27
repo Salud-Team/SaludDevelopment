@@ -76,8 +76,13 @@ export class SaludAddRecipientScreenComponent implements OnInit {
   }
 
   submitEmail(name, email, num){
-    //sends email to people, does this on the backend.
-    this.router.navigate(['/salud-add-gift-screen']);
+    if (email == "" && num == ""){
+      //Prompt for input on one
+    }
+    else{
+      //sends email to people, does this on the backend.
+      this.router.navigate(['/salud-add-gift-screen']);
+    }
   }
 
 }
