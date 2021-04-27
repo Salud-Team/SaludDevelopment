@@ -11,7 +11,8 @@ interface SaludUser{
   phone_num: Number; 
   email: String;
   password: String;
-  personalUser: Boolean
+  personalUser: Boolean;
+  picture: String
 }
 
 interface Order{
@@ -22,20 +23,23 @@ interface Order{
   amount: Number;
   description: String;
   //Check if/how we store videos
-  redeemed: Boolean
+  redeemed: Boolean;
+  qrcode: String;
+  video: String
 }
 
 interface BigOrder{
   id: Number;
   gifter_id: Number; 
   recipient_id: Number; 
-  merchant_id: Number;
+  merchant_id: Number
   amount: Number;
   description: String;
-  //Check if/how we store videos
-  redeemed: Boolean,
-  gifter: SaludUser, 
-  recipient: SaludUser, 
+  redeemed: Boolean;
+  qrcode: String;
+  video: String;
+  gifter: SaludUser;
+  recipient: SaludUser;
   merchant: SaludUser
 }
 
@@ -43,6 +47,9 @@ interface Merchant{
   id: Number;
   name: String;
   location: String; 
+  city: String; 
+  state: String; 
+  zip_code: String; 
   food_type: String
 }
 interface BigMerchant{
@@ -51,7 +58,8 @@ interface BigMerchant{
   phone_num: Number; 
   email: String;
   password: String;
-  personalUser: Boolean; 
+  personalUser: Boolean;
+  picture: String;  
   merchant: Merchant
 }
 @Injectable({
@@ -77,14 +85,15 @@ export class CrudService {
     })
   } 
 
-  saveSaludUser(name, id, phonenum, email, password, personalUser){
+  saveSaludUser(name, id, phonenum, email, password, personalUser, picture=""){
     var saludData: SaludUser = {
       name: name, 
       id: id,
       phone_num: phonenum,
       email: email, 
       password: password, 
-      personalUser: personalUser
+      personalUser: personalUser, 
+      picture: picture
     }; 
     this.savedSaludUser = saludData;
   }
@@ -95,6 +104,14 @@ export class CrudService {
 
   getSaludUsers(): Observable<SaludUser> {
     return this.httpClient.get<SaludUser>(this.endpoint + '/SaludUserData')
+    .pipe(
+      retry(1),
+      catchError(this.processError)
+    )
+  }
+
+  getOrder(id): Observable<Order>{
+    return this.httpClient.put<Order>(this.endpoint + '/findOrder', {id: id})
     .pipe(
       retry(1),
       catchError(this.processError)
@@ -169,12 +186,17 @@ export class CrudService {
     return this.httpClient.post(this.endpoint + '/OrderData', {gifter_id: gifter_id, recipient_id: recipient_id, merchant_id: merchant_id, amount: amount, description: description}, {responseType: 'text'}); 
   }
 
-  createPersonalUser(name, phone_num, email, password, payment_type){
-    return this.httpClient.post(this.endpoint + '/signupPersonal', {name: name, phone_num: phone_num, email: email, password: password, payment_type: payment_type}, {responseType: 'text'});
+  createOrderQRCode(id): Observable<Order>{
+    return this.httpClient.put<Order>(this.endpoint + '/OrderQRCodes', {id: id}); 
   }
 
-  createMerchantUser(name, phone_num, email, password, location, food_type){
-    return this.httpClient.post(this.endpoint + '/signupMerchant', {name: name, phone_num: phone_num, email: email, password: password, location: location, food_type: food_type}, {responseType: 'text'});
+
+  createPersonalUser(name, phone_num, email, password, payment_type, picture){
+    return this.httpClient.post(this.endpoint + '/signupPersonal', {name: name, phone_num: phone_num, email: email, password: password, payment_type: payment_type, picture: picture||""}, {responseType: 'text'});
+  }
+
+  createMerchantUser(name, phone_num, email, password, location, food_type, picture){
+    return this.httpClient.post(this.endpoint + '/signupMerchant', {name: name, phone_num: phone_num, email: email, password: password, location: location, food_type: food_type, picture: picture||""}, {responseType: 'text'});
   }
 
   getAllOrders(){

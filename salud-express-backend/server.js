@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const QRCode = require('qrcode');
+const fs = require("fs");
+const request = require("request"); 
 var httpProxy = require('http-proxy');
 
 const db = require("./app/models");
@@ -110,9 +113,9 @@ app.post("/signupPersonal", (req, res) => {
     id = Math.floor(Math.random() * 1000000000) % 9999999; 
     console.log(id);
   }
-  db.salud_models.SaludUser.insertMany([{id: id, name: req.body.name, phone_num: req.body.phone_num, email: req.body.email, password: req.body.password, personalUser: true}])
+  db.salud_models.SaludUser.insertMany([{id: id, name: req.body.name, phone_num: req.body.phone_num, email: req.body.email, password: req.body.password, personalUser: true, picture: req.body.picture||""}])
   .then(function(){
-    console.log("New order created");
+    console.log("New Salud User created");
     //res.send("Entered successfully."); 
   }).catch(function(error){
     console.log(error);
@@ -120,7 +123,7 @@ app.post("/signupPersonal", (req, res) => {
   });
   db.salud_models.PersonalUser.insertMany([{id: id, name: req.body.name, payment_type: req.body.payment_type}])
   .then(function(){
-    console.log("New order created");
+    console.log("New Personal User created");
     res.send("Entered successfully."); 
   }).catch(function(error){
     console.log(error);
@@ -146,17 +149,17 @@ app.post("/signupMerchant", (req, res) => {
     id = Math.floor(Math.random() * 1000000000) % 9999999; 
     console.log(id);
   }
-  db.salud_models.SaludUser.insertMany([{id: id, name: req.body.name, phone_num: req.body.phone_num, email: req.body.email, password: req.body.password, personalUser: true}])
+  db.salud_models.SaludUser.insertMany([{id: id, name: req.body.name, phone_num: req.body.phone_num, email: req.body.email, password: req.body.password, personalUser: false, picture: req.body.picture||""}])
   .then(function(){
-    console.log("New order created");
+    console.log("New Salud User created");
     //res.send("Entered successfully."); 
   }).catch(function(error){
     console.log(error);
     //res.send("Entered unsuccessfully."); 
   });
-  db.salud_models.MerchantUser.insertMany([{id: id, name: req.body.name, location: req.body.location, food_type: req.body.food_type}])
+  db.salud_models.MerchantUser.insertMany([{id: id, name: req.body.name, location: req.body.location, city: req.body.city||"", state: req.body.state||"", zip_code: req.body.zipcode || "",  food_type: req.body.food_type}])
   .then(function(){
-    console.log("New order created");
+    console.log("New Merchant created");
     res.send("Entered successfully."); 
   }).catch(function(error){
     console.log(error);
@@ -165,7 +168,7 @@ app.post("/signupMerchant", (req, res) => {
 });
 
 
-app.get("/createOrder", (req, res) =>{
+app.put("/createOrder", (req, res) =>{
 
 }); 
 
@@ -235,6 +238,107 @@ app.put("/aggregationOrderOfUser", (req, res) =>{
   });
 });
 
+app.put("/aggregationReceivedOrderOfUser", (req, res) =>{
+  var id = req.body.id; 
+  //Right idea, but we're going to use pipelines for multijoins
+  db.salud_models.Order.aggregate([{
+    $match: {
+      recipient_id: id
+    }
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "gifter_id", 
+      foreignField: "id", 
+      as: "gifter"
+    }
+  },{
+    $unwind: "$gifter" 
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "recipient_id", 
+      foreignField: "id", 
+      as: "recipient"
+    }
+  },{
+    $unwind: "$recipient" 
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "merchant_id", 
+      foreignField: "id", 
+      as: "merchant"
+    }
+  },{
+    $unwind: "$merchant" 
+  }], function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+    }
+  });
+});
+
+app.put("/aggregationReceivedValidOrderOfUser", (req, res) =>{
+  var id = req.body.id; 
+  //Right idea, but we're going to use pipelines for multijoins
+  db.salud_models.Order.aggregate([{
+    $match: {
+      $and: [
+        {
+          recipient_id: id,
+          redeemed: false
+        }
+      ]
+    }
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "gifter_id", 
+      foreignField: "id", 
+      as: "gifter"
+    }
+  },{
+    $unwind: "$gifter" 
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "recipient_id", 
+      foreignField: "id", 
+      as: "recipient"
+    }
+  },{
+    $unwind: "$recipient" 
+  }, {
+    $lookup:
+    {
+      from: "saludusers", 
+      localField: "merchant_id", 
+      foreignField: "id", 
+      as: "merchant"
+    }
+  },{
+    $unwind: "$merchant" 
+  }], function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+    }
+  });
+});
+
 app.put("/pullUnredeemedOrdersOfUser", (req, res) =>{
   var id = req.body.id; 
   console.log("In this endpoint"); 
@@ -249,6 +353,20 @@ app.put("/pullUnredeemedOrdersOfUser", (req, res) =>{
   }); 
 }); 
 
+app.put("/pullUnredeemedOrdersGivenToUser", (req, res) =>{
+  var id = req.body.id; 
+  console.log("In this endpoint"); 
+  db.salud_models.Order.find({recipient_id: id, redeemed: false}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.send(docs);
+  }
+  }); 
+});
+
 app.put("/pullUnredeemedOrdersOfMerchant", (req, res) =>{
   var id = req.body.id; 
   db.salud_models.Order.find({merchant_id: id, redeemed: false}, function(err, docs){
@@ -258,6 +376,33 @@ app.put("/pullUnredeemedOrdersOfMerchant", (req, res) =>{
     else{
       console.log("Second function call : ", docs);
       res.send(docs);
+  }
+  }); 
+}); 
+
+app.get("/findOrder", (req, res) =>{
+  var id = req.body.id; 
+  db.salud_models.Order.find({id: id, redeemed: false}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.send(docs);
+  }
+  }); 
+}); 
+
+app.put("/redeemOrder", (req, res) =>{
+  var id = req.body.id; 
+  db.salud_models.Order.find({id: id, redeemed: false}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      //res.send(docs);
+      //Update Order
   }
   }); 
 }); 
@@ -339,6 +484,38 @@ app.get("/PullAllMerchants", (req, res) => {
   });
 });
 
+app.put("/OrderQRCodes", (req, res) => {
+  var code = "";
+  var r;  
+  db.salud_models.Order.find({id: req.body.id}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      code = docs[0].qrCode;
+      r = docs; 
+      if(code == undefined){
+        console.log("Im in here");
+        var x = turnOrderIntoQRCodes(req.body.id||38532);
+        db.salud_models.Order.find({id: x}, function(err, docs){
+          if (err){
+            console.log(err);
+          }
+          else{
+            console.log("Second function call : ", docs);
+            res.json(docs);
+          }
+        });
+      }
+      else{
+        console.log("Here now?");
+        res.json(r);
+      }
+    }
+  });
+})
+
+
 app.put("/GetMerchantById", (req, res) => { 
   var id = req.body.id; 
   db.salud_models.SaludUser.aggregate([{
@@ -369,6 +546,39 @@ app.put("/GetMerchantById", (req, res) => {
   }
   });
 });
+
+
+app.put("/GetPersonalById", (req, res) => { 
+  var id = req.body.id; 
+  db.salud_models.SaludUser.aggregate([{
+    $match: {
+      personalUser: true
+    }
+  },{
+    $match: {
+      id: id
+    }
+  },{
+    $lookup:
+    {
+      from: "personalusers", 
+      localField: "id", 
+      foreignField: "id", 
+      as: "personal"
+    }
+  }, {
+    $unwind: "$personal"
+  }], function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log("Second function call : ", docs);
+      res.json(docs);
+  }
+  });
+});
+
 
 app.get("/OrderData", (req, res) => { 
   db.salud_models.Order.find({}, function(err, docs){
@@ -403,6 +613,7 @@ app.post("/OrderData", (req, res) => {
   db.salud_models.Order.insertMany([{id: id, gifter_id: req.body.gifter_id, recipient_id: req.body.recipient_id, merchant_id: req.body.merchant_id, amount: req.body.amount, description: req.body.description, redeemed: false}])
   .then(function(){
     console.log("New order created");
+
     res.send("Entered successfully."); 
   }).catch(function(error){
     console.log(error);
@@ -416,7 +627,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
   console.log(`Process Port is ${process.env.PORT}`);
 });
-
 
 
 
@@ -454,12 +664,11 @@ async function deleteExistingData(){
   });
   //return true; 
   insertDummyData();
-}
-
+} 
 
 function insertDummyData(){
 
-  db.salud_models.SaludUser.insertMany([{name: 'Test User', id: 0123, phone_num: 2103469382, email: "testuser@gmail.com", password: "test123", personalUser: true},
+ db.salud_models.SaludUser.insertMany([{name: 'Test User', id: 0123, phone_num: 2103469382, email: "testuser@gmail.com", password: "test123", personalUser: true},
 {name: 'Test Recipient', id: 0125, phone_num: 2192069382, email: "testuser2@gmail.com", password: "test100", personalUser: true},
 {name: 'Food Place 1', id: 9998, phone_num: 2130984732, email: "fooduser1@gmail.com", password: "test124", personalUser: false},
 {name: 'Food Place 2', id: 9997, phone_num: 2130984742, email: "fooduser2@gmail.com", password: "test1354", personalUser: false},
@@ -474,9 +683,9 @@ db.salud_models.PersonalUser.insertMany([{name: 'Test User', id: 0123, payment_t
 }).catch(function(error){
   console.log(error);
 });
-db.salud_models.MerchantUser.insertMany([{name: 'Food Place 1', id: 9998, location: "100 Cornet Drive", food_type: "Beer"},
-{name: 'Food Place 2', id: 9997, location: "200 Cornet Drive", food_type: "Wine"},
-{name: 'Food Place 3', id: 9967, location: "300 Cornet Drive", food_type: "Beer"}]).then(function(){
+db.salud_models.MerchantUser.insertMany([{name: 'Food Place 1', id: 9998, location: "100 Cornet Drive", city: "Philadelphia", state: "PA", zip_code: "19026", food_type: "Beer"},
+{name: 'Food Place 2', id: 9997, location: "200 Cornet Drive", city: "Boston", state: "MA", zip_code: "30291", food_type: "Wine"},
+{name: 'Food Place 3', id: 9967, location: "300 Cornet Drive", city: "San Francisco", state: "CA", zip_code: "90153", food_type: "Beer"}]).then(function(){
   console.log("MerchantUser Data inserted");
 }).catch(function(error){
   console.log(error);
@@ -498,4 +707,28 @@ db.salud_models.Order.insertMany([
 }).catch(function(error){
   console.log(error);
 });
+}
+
+
+function turnOrderIntoQRCodes(id){
+  db.salud_models.Order.find({id: id}, function(err, docs){
+    if (err){
+      console.log(err);
+    }
+    else{
+      var b = JSON.stringify(docs[0]);
+      QRCode.toDataURL(b, function(err, code){
+        if(err) return console.log("error occurred");
+        console.log(code);
+        db.salud_models.Order.updateOne({id: id},{qrCode: code},function(err, doc2){
+          if(err){
+            console.log(err); 
+          }
+          else{
+            console.log("Updated Order: ", doc2);
+          }
+        })
+      })
+    }
+  });
 }

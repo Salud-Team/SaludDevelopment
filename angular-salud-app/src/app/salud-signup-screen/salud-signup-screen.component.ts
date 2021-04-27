@@ -11,7 +11,7 @@ export class SaludSignupScreenComponent implements OnInit {
 
   chosen_option: string = ""; 
   options = []; 
-  showPersonalUserInfo: boolean = false; 
+  showPersonalUserInfo: boolean = true; 
   showMerchantUserInfo: boolean = false; 
   name: string = ""; 
   phone_num: string = ""; 
@@ -23,7 +23,7 @@ export class SaludSignupScreenComponent implements OnInit {
   state: string = ""; 
   zipcode: string = ""; 
   food_type: string = ""; 
-  picture_preview; 
+  picture_preview: string = ""; 
   url: any; 
 
   selectFile(event: any) { //Angular 11, for stricter type
@@ -33,6 +33,7 @@ export class SaludSignupScreenComponent implements OnInit {
 		}
 		
 		var mimeType = event.target.files[0].type;
+    var type = mimeType.split("/")[1];
 		
 		if (mimeType.match(/image\/*/) == null) {
 			//this.msg = "Only images are supported";
@@ -41,11 +42,15 @@ export class SaludSignupScreenComponent implements OnInit {
 		
 		var reader = new FileReader();
 		reader.readAsDataURL(event.target.files[0]);
+
+    console.log(event.target.files[0]);
 		
 		reader.onload = (_event) => {
 			//this.msg = "";
-			this.url = reader.result; 
+			this.url = reader.result;  
 		}
+    var urlCreator = window.URL || window.webkitURL; 
+    this.picture_preview = urlCreator.createObjectURL(event.target.files[0]); 
 	}
 
   constructor(public crudService: CrudService, public router: Router) { }
@@ -107,8 +112,8 @@ export class SaludSignupScreenComponent implements OnInit {
   }
 
   loadFile(event){
-    this.picture_preview = URL.createObjectURL(event.target.files[0]);
-    console.log(this.picture_preview);
+    this.url = URL.createObjectURL(event.target.files[0]);
+    console.log(this.url);
   }
 
   submitPersonalUser(){
@@ -117,7 +122,8 @@ export class SaludSignupScreenComponent implements OnInit {
       console.log(this.chosen_option);
     }
     else{
-      this.crudService.createPersonalUser(this.name, this.phone_num, this.email, this.password, this.chosen_option).subscribe((res: {}) => {
+      console.log(this.picture_preview);
+      this.crudService.createPersonalUser(this.name, this.phone_num, this.email, this.password, this.chosen_option, this.picture_preview).subscribe((res: {}) => {
         if (res == undefined){
           console.log("Didnt work");
         }
@@ -135,7 +141,7 @@ export class SaludSignupScreenComponent implements OnInit {
     }
     else{
       this.address = this.street + " " + this.city + ", " + this.state + " " + this.zipcode; 
-      this.crudService.createMerchantUser(this.name, this.phone_num, this.email, this.password, this.address, this.food_type).subscribe((res: {}) => {
+      this.crudService.createMerchantUser(this.name, this.phone_num, this.email, this.password, this.address, this.food_type, this.picture_preview).subscribe((res: {}) => {
         if (res == undefined){
           console.log("Didnt work");
         }
