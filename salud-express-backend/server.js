@@ -610,7 +610,7 @@ app.post("/OrderData", (req, res) => {
     id = Math.floor(Math.random() * 1000000000) % 9999999; 
     console.log(id);
   }
-  db.salud_models.Order.insertMany([{id: id, gifter_id: req.body.gifter_id, recipient_id: req.body.recipient_id, merchant_id: req.body.merchant_id, amount: req.body.amount, description: req.body.description, redeemed: false}])
+  db.salud_models.Order.insertMany([{id: id, gifter_id: req.body.gifter_id, recipient_id: req.body.recipient_id, merchant_id: req.body.merchant_id, amount: req.body.amount, description: req.body.description, redeemed: false, video: req.body.video}])
   .then(function(){
     console.log("New order created");
 
