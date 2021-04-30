@@ -1,3 +1,8 @@
+.screen-container {
+    padding-top: 39px;
+    text-align: center;
+}
+
 // Global 
 #head {
     background: #F4B167;
@@ -21,10 +26,6 @@ h2 {
 }
 
 // Containers
-#inputbody {
-    margin: 32px;
-
-}
 // Input Fields
 // Profile Pic Upload
 // Input Boxes
@@ -70,11 +71,8 @@ h2 {
 }
 
 // Buttons
-#UserButton, #MerchantButton {
-    width: 201px;
-    height: 44px;    
-    
-    background: #FEF6EF;    
+#UserButton, #MerchantButton {      
+    background: none;    
     // box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
     border: none;
     border-radius: 9px;
@@ -82,12 +80,21 @@ h2 {
     // Font
     font-weight: 550;
     font-size: 14px;
-    letter-spacing: 0.02em;
+    color: #828282;
+
+    margin: 14px;
+
+}
+#UserButton:active,
+#UserButton:focus {
+    background-color:#FEF6EF;  
+    padding: 6px;
     color: #F4B167;
-
-    margin-left: 55px;
-    margin-right: 55px;
-
+}
+#UserButton:focus {
+    background-color:#FEF6EF;  
+    padding: 6px;
+    color: #F4B167;
 }
 #MerchantUserSubmit {
     width: 239px;
@@ -101,27 +108,19 @@ h2 {
     // Font
     font-weight: normal;
     font-size: 16px;
-    letter-spacing: 0.02em;
     color: #FFFFFF;
 
     margin-top: 30px;
     margin-left: 36px;
     margin-right: 36px;
 }
-// #file {
-//     background: #F7F6F5;
-//     border: none;
-// }
-#UserButton {
-    margin-bottom: 20px;
-}
 
 #pictureUpload>input {
     display: none;
   }
 #pictureUpload {
-    margin-top: -80px;
-    padding-left: 225px;
+    margin-top: -90px;
+    padding-left: 193px;
 }
 
 

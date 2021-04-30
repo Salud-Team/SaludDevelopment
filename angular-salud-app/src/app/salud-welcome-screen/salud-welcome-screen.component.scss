@@ -1,27 +1,99 @@
+// TEXT
+#hero-text {
+    font-weight: 600;
+    font-size: 14px;
 
+    color: #484848;
+    margin-bottom: 82px;
+    width: 95%;
+}
+
+// IMAGES
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#logoHead {
+    width: 167px;
+    height: 54px;
+}
+#hero-img {
+    width: 282px;
+    height: 183px;
+
+    margin-top: 119px;
+    margin-bottom: 83px;
+}
+
+// BUTTONS
+#buttons {
+    text-align: center;
+}
+#smallbuttons {
+    margin-bottom: 35px;
+}
+#merchantbutton {
+    border: none;
+    border-radius: 4px;
+    background-color: #E4F2FA;
+
+    // Font
+    font-size: 12px;
+    line-height: 15px;
+    color: #2E8EC2;
+
+    padding: 6px;
+}
+#spanbold {
+    font-weight: 600;
+}
 #button-signup, #button-login {
     width: 137px;
     height: 44px;
 
     box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.25);
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
 
     // Font
-    font-weight: normal;
+    font-weight: 500;
     font-size: 16px;
-    letter-spacing: 0.02em;
+}
+#button-login  {
+    background-color: #F7F6F5;
+    color: #292929;
+
+    margin-right: 14px;
+}
+#button-signup  {
+    background-color: #F4B167;;
+    color: #FFFFFF;
+
+    margin-left: 14px;
 }
 
-#merchantbutton {
-    border: none;
-    background: none;
 
-    // Font
-    font-size: 12px;
-    line-height: 15px;
-    color: #F4B167;
+.screen-container {
+    background-image: url(../../assets/images/onboardbg.svg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 37%;
 }
-#spanbold {
-    font-weight: 600;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
