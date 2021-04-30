@@ -1,43 +1,50 @@
-<div id="head" *ngIf="renderPersonal == true">
-    <p>{{headerText}}'s Orders</p>
-</div>
-<p><br></p>
-<div id="View labels">
-    <div id="personenvironlabels">
-        <div id="clickableLabels">
-            <!-- Labels should have images-->
-            <label id="renderEnvironment" (click)="renderPersonal = false"> Environment </label>
-            <p></p>
-            <label id="renderPersonal" (click)="renderPersonal = true"> Personal </label>
+<div class="mobile-screen">
+    <div class="screen-container">
+        <!-- <div id="head" *ngIf="renderPersonal == true">
+            <p id>{{headerText}}'s Orders</p>
+        </div> -->
+        <div id="head" *ngIf="renderPersonal == true">
+            <h1><span id="header1">{{headerText}}'s</span><span id="header2"> Salud</span></h1>
         </div>
-    </div>
-    <div id="environment" *ngIf="renderPersonal == false">
-        <!-- More of Tia's job than mine -->
-    </div>
-    <div id="allOrders" *ngIf="renderPersonal == true">
-        <div id="clickableLabels">
-            <label id="giftedOrders" (click)="renderGifted = true">Your Gifted Orders</label>
-            <p></p>
-            <label id="receivedOrders" (click)="renderGifted = false">Your Received Orders</label>
+        <div id="environment" *ngIf="renderPersonal == false">
+            <h1><span id="header1">See Who's</span><span id="header2"> Celebrating</span></h1>
         </div>
-        <div id="outer-orders-gifted" *ngIf="renderGifted == true">
-            <div id="orders-gifted" [innerHTML]="order"></div>
-            <p><br></p>
-            <div id="createOrder">
-                <button (click)="createNewOrder()"> Create Order </button>
-            </div>
-        </div>
-        <div id="outer-orders-received"  *ngIf="renderGifted == false">
-            <div id="orders-received" *ngFor="let order of orderReceived">
-                <div class='order-label'>
-                    <label (click)='selectRecipientId(order.id)'>
-                        <img width='50px' height='25px' src={{order.gifter_pic}} /> <img width='50px' height='25px' src={{order.recipient_pic}} />{{order.gifter_name}} sent to You items from {{order.merchant_name}} 
-                    </label>  
-                    <p>
+    
+        <div id="View labels">
+            <div id="personenvironlabels">
+                <div id="clickableLabels">
+                    <!-- Labels should have images-->
+                    <button id="renderEnvironment" (click)="renderPersonal = false"><img src="../../assets/images/peopleIcon(gray).svg" alt="" width="22px"></button>
+                    <button id="renderPersonal" (click)="renderPersonal = true"><img src="../../assets/images/personIcon(gray).svg" alt="" width="16px"></button>
                 </div>
             </div>
-            <p><br></p>
-            <!--<div id="redeemOrder"><button (click)="redeemAllOrders()"> Redeem Order </button></div>-->
+            
+            <div id="allOrders" *ngIf="renderPersonal == true">
+                <div id="clickableLabels">
+                    <label id="giftedOrders" (click)="renderGifted = true">Your Gifted Orders</label>
+   
+                    <label id="receivedOrders" (click)="renderGifted = false">Your Received Orders</label>
+                </div>
+                <div id="outer-orders-gifted" *ngIf="renderGifted == true">
+                    <div id="orders-gifted" [innerHTML]="order"></div>
+                    <p><br></p>
+                    <div id="createOrder">
+                        <button (click)="createNewOrder()"> Create Order </button>
+                    </div>
+                </div>
+                <div id="outer-orders-received"  *ngIf="renderGifted == false">
+                    <div id="orders-received" *ngFor="let order of orderReceived">
+                        <div class='order-label'>
+                            <label (click)='selectRecipientId(order.id)'>
+                                <img width='50px' height='25px' src={{order.gifter_pic}} /> <img width='50px' height='25px' src={{order.recipient_pic}} />{{order.gifter_name}} sent to You items from {{order.merchant_name}} 
+                            </label>  
+                            <p>
+                        </div>
+                    </div>
+                    <p><br></p>
+                    <!--<div id="redeemOrder"><button (click)="redeemAllOrders()"> Redeem Order </button></div>-->
+                </div>
+            </div>
         </div>
     </div>
 </div>

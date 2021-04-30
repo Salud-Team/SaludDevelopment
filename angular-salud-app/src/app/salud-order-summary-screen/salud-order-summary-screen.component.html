@@ -1,46 +1,51 @@
-<div id="head">
-    <h2>Order Summary</h2>
-</div>
-<div id="order-layout">
-    <div id="recipient-info">
-        <p>To: {{recipient_name}}</p>
-    </div>
-    <div id="location-info">
-        <p>For: </p>
-        <select id="food_types" [(ngModel)]="chosen_option">
-            <option *ngFor="let option of options" value="option">{{option}}</option>
-        </select>
-    </div>
-    <div id="occasion-info">
-        <select id="occasion" [(ngModel)]="occasion">
-            <option value="birthday">Birthday</option>
-            <option value="graduation">Graduation</option>
-            <option value="anniversary">Anniversary</option>
-            <option value="new job">New Job</option>
-            <option value="new year's">New Year's</option>
-        </select>
-    </div>
-    <div id="amount-info">
-        <p>Amount: </p>
-        <div id="amount-buttons">
-            <button (click)="setAmount(25)">$25</button>
-            <button (click)="setAmount(50)">$50</button>
-            <button (click)="setAmount(100)">$100</button>
-            <button (click)="toggleCustomAmount()">{{textDisplayForCustomButton()}}</button>
-            <p></p>
+<div class="mobile-screen">
+    <div class="screen-container">
+        <div id="head">
+            <h1><span id="header1">Salud</span><span id="header2"> Summary</span></h1>
         </div>
-        <input *ngIf="checkCustomAmount" type="number" id="Amount" placeholder="40" (keyup)="setAmount($event.target.value)"/>
-    </div>
-    <div id="order-description">
-        <h3>Add a message: </h3>
-        <br>
-        <textarea id="description" placeholder="Type Message Here"></textarea>
-        <p></p>
-        <button id="record-video"> Record a Video </button>
-    </div>
-    <p></p>
-    <div id="order-checkout">
-        <button id="checkout" (click)="toOrderConfirmationScreen()">${{amount}}       Checkout</button>
+        <div id="order-layout">
+            <div id="recipient-info">
+                <p id="categorylabel1">To:</p>
+                <p id="categoryvalue">{{recipient_name}}</p>
+            </div>
+            <div id="recipientmerchant-info">
+                <span id="location-info">
+                    <p id="categorylabel2">For:</p>
+                    <!-- <p id="categoryvalue">{{option}}</p> -->
+                    <select id="food_types" [(ngModel)]="chosen_option">
+                        <option *ngFor="let option of options" value="option">{{option}}</option>
+                    </select>
+                </span>
+                <span id="occasion-info">
+                    <select id="occasion" [(ngModel)]="occasion">
+                        <option value="birthday">Birthday</option>
+                        <option value="graduation">Graduation</option>
+                        <option value="anniversary">Anniversary</option>
+                        <option value="new job">New Job</option>
+                        <option value="new year's">New Year's</option>
+                    </select>
+                </span>
+            </div>
+            <div id="amount-info">
+                <p id="categorylabel2">Amount:</p>
+                <div id="amount-buttons">
+                    <button id="amountbox" (click)="setAmount(25)">$25</button>
+                    <button id="amountbox" (click)="setAmount(50)">$50</button>
+                    <button id="amountbox" (click)="setAmount(100)">$100</button>
+                    <button id="amountbox" (click)="toggleCustomAmount()">{{textDisplayForCustomButton()}}</button>
+                </div>
+                <input *ngIf="checkCustomAmount" type="number" id="Amount" placeholder="Add other value" (keyup)="setAmount($event.target.value)"/>
+            </div>
+            <div id="order-description">
+                <h3 id="categorylabel2">Add a message:</h3>
+                <textarea id="description" placeholder="Type your message here..."></textarea>
+                <button id="record-video">Record a video</button>
+            </div>
+            <p></p>
+            <div id="order-checkout">
+                <button id="checkout" (click)="toOrderConfirmationScreen()"><span>${{amount}}</span><span>Checkout</span></button>
+            </div>
+        </div>
+        <!-- <p>salud-order-summary-screen works!</p> -->
     </div>
 </div>
-<p>salud-order-summary-screen works!</p>

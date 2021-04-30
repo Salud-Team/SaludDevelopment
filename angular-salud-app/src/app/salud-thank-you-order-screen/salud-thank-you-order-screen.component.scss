@@ -1,0 +1,53 @@
+// Header
+#head {
+    padding-bottom: 22px;
+}
+#header1 {
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;    
+}
+#header2 {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;   
+}
+
+#thankyouIMG {
+    // left: 12px;
+    // right: 45.76px;
+    // top: 165px;
+    // bottom: 225px;
+    // margin-left: 0;
+    margin-right: 10px;
+    padding-bottom: 65px;
+}
+
+p {
+    // width: 95%;
+    font-weight: normal;
+    font-size: 12px;
+    /* Gray 2 */
+    text-align: left;
+    color: #484848;
+}
+
+#backtoMainMenu {
+    background: none;
+    border: none;
+
+    font-weight: normal;
+    font-size: 14px;
+    /* Gray 2 */
+
+    color: #484848;
+}
+
+.screen-container {
+    text-align: center;
+}
+.mobile-screen {
+    background: #FEF6EF;
+}
