@@ -1,43 +1,48 @@
-<div id="head">
-    <h1>Order Confirmation</h1>
-</div>
-<div id="order-layout">
-    <div id="recipient-info">
-        <p>To: {{recipient_name}}</p>
-    </div>
-    <div id="location-info">
-        <p>For: </p>
-        <h3>{{recipient_name}}'s {{crudService.occasion}} Celebration</h3>
-        <div id="recipient_information">
-
+<div class="mobile-screen">
+    <div class="screen-container">
+        <div id="head">
+            <h1><span id="header1">Order</span><span id="header2"> Confirmation</span></h1>
+        </div>
+        <div id="order-layout">
+            <!-- <div id="recipient-info">
+                <p id="categorylabel1">To: {{recipient_name}}</p>
+            </div> -->
+            <div id="location-info">
+                <p>For: </p>
+                <h1><span id="value1">{{recipient_name}}'s</span><span id="value2"> {{crudService.occasion}}</span></h1>
+                <div id="recipient_information">
+                    <!-- recipent info -->
+                    <div id="recipientinfodiv"><span id="recipientinfolabel">Email</span><span id="recipientinfovalue"></span></div>
+                    <div id="recipientinfodiv"><span id="recipientinfolabel">Phone</span><span id="recipientinfovalue"></span></div>
+                    <div id="recipientinfodiv"><span id="recipientinfolabel">Address</span><span id="recipientinfovalue"></span></div>
+                </div>
+            </div>
+            <div id="merchant-info">
+                <h2 id="merchantname">{{merchant_name}}</h2>
+                <p id="merchantaddress">{{merchant_address}}</p>
+            </div>
+            <div id="giftinfo"></div>
+                <label id="giftinfo">{{crudService.food_type}}  {{crudService.order_amount}}</label>
+            </div>
+            <div id="pricing-info">
+                <div id="pricinginfodiv"><span id="pricinglabel">Subtotal: </span><span id="pricingvalue">{{crudService.order_amount}}</span></div>
+                <div id="pricinginfodiv"><span id="pricinglabel">Sales Tax: </span><span id="pricingvalue">$0.00</span></div>
+                <div id="pricinginfodiv"><span id="pricinglabel">Processing Fee: </span><span id="pricingvalue">${{crudService.order_amount/10}}.00</span></div>
+            </div>
+            <div id="checkout">
+                <label id="checkoutdiv"><span id="checkoutlabel">Total:</span><span id="checkoutvalue">{{total}}</span></label>
+                <p></p>
+                <button id="paymentoptions" data-dropdown="drop"> Payment Options </button>
+                    <!-- Needs CSS -->
+                    <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
+                        <li>Apple Pay</li>
+                        <li>Google Play Services</li>
+                        <li>PayPal</li>
+                    </ul>
+            </div>
+            <p></p>
+            <div id="create-order">
+                <button id="largebtn" (click)="placeOrder()">Submit Order</button>
+            </div>
         </div>
     </div>
-    <div id="merchant-info">
-        <h2>{{merchant_name}}</h2>
-        <p>{{merchant_address}}</p>
-    </div>
-    <div id="order-info">
-        <label>{{crudService.food_type}}  {{crudService.order_amount}}</label>
-        <p></p>
-        <div id="pricing-info">
-            <p>Subtotal: {{crudService.order_amount}}</p>
-            <p>Sales Tax:  $0.00</p>
-            <p>Processing Fee: ${{crudService.order_amount/10}}.00</p>
-        </div>
-    </div>
-    <div id="checkout">
-        <label>Total:  {{total}}</label>
-        <p></p>
-        <button data-dropdown="drop"> Payment Options </button>
-            <!-- Needs CSS -->
-            <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
-                <li>Apple Pay</li>
-                <li>Google Play Services</li>
-                <li>PayPal</li>
-            </ul>
-    </div>
-    <p></p>
-    <div id="create-order">
-        <button id="order-creation" (click)="placeOrder()">Submit Order</button>
-    </div>
-</div>

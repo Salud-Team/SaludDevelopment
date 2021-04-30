@@ -32,17 +32,19 @@ input {
     background: #F7F6F5; 
     border: none;
     border-radius: 10px;
+
+    font-size: 12px;
+    color: #828282;
+    padding-left: 16px;
 }
 #inputbody {
     width: 311px;
 }
 #EmailBox {
     margin-bottom: 30px;
-    padding-left: 16px;
 }
 #PasswordBox {
     margin-bottom: 80px;
-    padding-left: 16px;
 }
 ::placeholder {
     // Font
