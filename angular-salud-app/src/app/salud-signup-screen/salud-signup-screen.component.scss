@@ -1,10 +1,17 @@
-// Global 
+.screen-container {
+    padding-top: 39px;
+    text-align: center;
+}
+
+// MAIN SCREEN ----------------------------------------------------
+
+// Head 
 #head {
     background: #F4B167;
 
-    padding-left: 32px;
+    padding-left: 28px;
     padding-top: 110px;
-    padding-bottom: 58px;
+    padding-bottom: 32px;
 }
 #subtitle {
     font-size: 14px;
@@ -19,14 +26,32 @@ h2 {
     color: #FFFFFF;
     // line-height: 52px;
 }
-
-// Containers
-#inputbody {
-    margin: 32px;
-
+// Profile Picture Upload
+#picUpload-container>input {
+    display: none;
 }
-// Input Fields
-// Profile Pic Upload
+#picUpload-container {
+    width: 122.21px;
+    height: 122.21px;
+    background: url(../../assets/images/profileUploadbg.svg);
+    background-size: 122.21px;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 0px 10px rgba(130, 130, 130, 0.25));
+    
+    position: absolute;
+    left: 221px;
+    top: 131px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+#pencilIcon {
+    position: absolute;
+    left: 303.57px;
+    top: 225px;
+}
+
 // Input Boxes
 #NameBox, #EmailBox, #PhoneBox, #PasswordBox {
     width: 311px;
@@ -36,7 +61,9 @@ h2 {
     border: none;
     border-radius: 10px;
 
-    // padding-left: 10px;
+    font-size: 12px;
+    color: #828282;
+    padding-left: 16px;
 }
 #NameBox {
     margin-bottom: 20px;
@@ -48,8 +75,78 @@ h2 {
     margin-bottom: 20px;
 }
 #PasswordBox {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
+// Buttons (User/Merchant Select)
+#UserButton, #MerchantButton {
+    background: none;    
+    border: none;
+    border-radius: 6px;
+
+    // Font
+    font-weight: 500;
+    font-size: 14px;
+    color: #828282;
+
+    margin: 16px;
+}
+// Clicked buttons
+#UserButton:focus, #MerchantButton:focus {
+    background-color:#FEF6EF;  
+    padding: 4px 10px 4px 10px;
+    color: #F4B167;
+}
+
+
+// User SCREEN ----------------------------------------------------
+#PersonalUserSubmit {
+    width: 239px;
+    height: 44px;    
+    
+    background: #F4B167;
+    box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
+    border: none;
+    border-radius: 10px;
+
+    // Font
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+
+    margin-top: 30px;
+    margin-left: 36px;
+    margin-right: 36px;
+}
+// Dropdown
+#payment_types {
+    width: 311px;
+    height: 33px;
+
+    background-color: #F7F6F5; 
+    background-image: url(../../assets/images/dropDownSignUp.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 280px;
+    background-size: 4%;
+    border: none;
+    border-radius: 10px;
+
+    margin-top: 10px;
+    padding: 5px;
+    padding-left: 11px;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+
+    font-size: 12px;
+    font-weight: normal;
+    color: #484848;
+}
+
+
+// Merchant SCREEN ----------------------------------------------------
 #StreetAddressBox, #CityBox, #StateBox, #ZipcodeBox, #FoodTypeBox {
     width: 311px;
     height: 33px;
@@ -59,35 +156,15 @@ h2 {
     background: #F7F6F5; 
     border: none;
     border-radius: 10px;
+
+    font-size: 12px;
+    color: #828282;
+    padding-left: 16px;
 }
 ::placeholder {
     // Font
     font-size: 12px;
-    letter-spacing: 0.02em;
     color: #828282;
-
-    padding: 16px;
-}
-
-// Buttons
-#UserButton, #MerchantButton {
-    width: 201px;
-    height: 44px;    
-    
-    background: #FEF6EF;    
-    // box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.15);
-    border: none;
-    border-radius: 9px;
-
-    // Font
-    font-weight: 550;
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    color: #F4B167;
-
-    margin-left: 55px;
-    margin-right: 55px;
-
 }
 #MerchantUserSubmit {
     width: 239px;
@@ -99,57 +176,11 @@ h2 {
     border-radius: 10px;
 
     // Font
-    font-weight: normal;
+    font-weight: 500;
     font-size: 16px;
-    letter-spacing: 0.02em;
     color: #FFFFFF;
 
     margin-top: 30px;
     margin-left: 36px;
     margin-right: 36px;
-}
-// #file {
-//     background: #F7F6F5;
-//     border: none;
-// }
-#UserButton {
-    margin-bottom: 20px;
-}
-
-#pictureUpload>input {
-    display: none;
-  }
-#pictureUpload {
-    margin-top: -80px;
-    padding-left: 225px;
-}
-
-
-// Select DropDown
-#additional-params-personal {
-    position: relative;
-}
-
-#additional-params-personal select {
-    width: 150px;
-    height: 33px;
-
-    background: #F7F6F5; 
-    border: none;
-    border-radius: 8px;
-
-    // appearance: none;
-    margin: 5px;
-    margin-top: 30px;
-}
-
-select::after {
-    position: absolute;
-    content: "";
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-
 }

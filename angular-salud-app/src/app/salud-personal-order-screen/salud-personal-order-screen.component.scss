@@ -1,0 +1,33 @@
+#head {
+    padding-bottom: 22px;
+}
+#header1 {
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;    
+}
+#header2 {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;   
+}
+#clickableLabels {
+    width: 187px;
+    height: 34px;
+    border: 1px solid #F7F6F5;
+    border-radius: 10px;
+}
+#renderEnvironment, #renderPersonal {
+    background: none;
+    border: none;
+    width: 93.5px;
+    height: 34px;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+#renderEnvironment:focus, #renderPersonal:focus {
+    background: #FEF6EF;
+    src: url(../../assets/images/peopleIconorange.svg);
+}

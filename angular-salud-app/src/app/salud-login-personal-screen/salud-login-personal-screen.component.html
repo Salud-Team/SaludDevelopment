@@ -1,27 +1,29 @@
-<div id="head">
-    <div id="title">
-        <h2>Login</h2>
-        <p id="subtitle">Welcome back!</p>
-    </div>  
-</div>
-
-<div class="screen-container">
-    <div id="inputbody">
-        <div id="input boxes">
-            <input type="text" placeholder="Email Address" id="EmailBox" #emailbox/>
-            <p>
-            <input type="password" placeholder="Password" id="PasswordBox" #passwordbox/>
-            <p>
-        </div>
-        <div id="buttons">
-            <p>
-                <button (click)="login(emailbox.value, passwordbox.value)">Login</button>
-            </p>
-        </div> 
-        <div id="passwordCorrectMessage">
-            <p *ngIf="correct"> Username and/or password is incorrect. Please try again. </p>
-        </div>   
+<div class="mobile-screen">
+    <div id="head">
+        <div id="title">
+            <h2>Login</h2>
+            <p id="subtitle">Welcome back!</p>
+        </div>  
     </div>
     
-    <p>salud-login-personal-screen works!</p>
+    <div class="screen-container">
+        <div id="inputbody">
+            <div id="input boxes">
+                <input type="text" placeholder="Email Address" id="EmailBox" #emailbox/>
+                <p>
+                <input type="password" placeholder="Password" id="PasswordBox" #passwordbox/>
+                <p>
+            </div>
+            <div id="buttons">
+                <p>
+                    <button (click)="login(emailbox.value, passwordbox.value)">Login</button>
+                </p>
+            </div> 
+            <div id="passwordCorrectMessage">
+                <p *ngIf="correct"> Username and/or password is incorrect. Please try again. </p>
+            </div>   
+        </div>
+        
+        <!-- <p>salud-login-personal-screen works!</p> -->
+    </div>
 </div>

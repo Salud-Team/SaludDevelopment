@@ -1,39 +1,38 @@
-<div class="screen-container">
-    <div id="head">
-        <h1><span id="header1">Add</span><span id="header2"> Recipients</span></h1>
-    </div>
-    <div id="search">
-        <div id="search-container"> 
-            <img id="search-icon" src="../../assets/images/searchIcon.svg" alt="">
-            <input type="text" id="searchbar" placeholder="Search" (keyup)="filter($event.target.value)">
-        </div>        
-        <div *ngFor="let item of recipientHTMLList">
-            <p>
-                <label name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)">
-                    <img width="50px" height="50px" src={{item.picture}}> {{item.name}}
-                </label>
-            </p>
+<div class="mobile-screen">
+    <div class="screen-container">
+        <div id="head">
+            <h1><span id="header1">Add</span><span id="header2"> Recipients</span></h1>
         </div>
-    </div>
-    <div id="overlay-div">
-        <button id="largebtn" (click)="toggleOverlay()" (clickOutside)="toggleFalse($event)">
-            Add Contact
-         </button>
-         <div id="overlay" *ngIf="isOpen" >
-            <ul class="overlay">
-                <div id="overlay-container">
-                    <div id="overlay-content">
-                        <div id="inputbody">
-                            <h2 id="overlay-header">Add Contact</h2>
-                            <li><input id="overlay-input" type="text"  placeholder="Name" #name></li>
-                            <li><input id="overlay-input" type="text"  placeholder="Email" #email></li>
-                            <li><input id="overlay-input" type="number"  placeholder="Phone Number" #phoneNum></li>
-                            <li><button id="overlay-btn" (click)="submitEmail(name.value, email.value, phoneNum.value)">Confirm</button></li>
+        <div id="search">
+            <div id="search-container"> 
+                <img id="search-icon" src="../../assets/images/searchIcon.svg" alt="">
+                <input type="text" id="searchbar" placeholder="Search" (keyup)="filter($event.target.value)">
+            </div>        <div *ngFor="let item of recipientHTMLList">
+                <p>
+                    <button id="recipientname" name="item.name" [innerHTML]="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)"></button>
+                </p>
+            </div>
+        </div>
+        <div id="overlay-div">
+            <button id="largebtn" (click)="toggleOverlay()">
+                Add Contact
+             </button>
+             <div id="overlay" *ngIf="isOpen" >
+                <ul class="overlay">
+                    <div id="overlay-container">
+                        <div id="overlay-content">
+                            <div id="inputbody">
+                                <h2 id="overlay-header">Add Contact</h2>
+                                <li><input id="overlay-input" type="text"  placeholder="Name" #name></li>
+                                <li><input id="overlay-input" type="text"  placeholder="Email" #email></li>
+                                <li><input id="overlay-input" type="number"  placeholder="Phone Number" #phoneNum></li>
+                                <li><button id="overlay-btn" (click)="submitEmail(name.value, email.value, phoneNum.value)">Confirm</button></li>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-    <p>salud-add-recipient-screen works!</p>
+        <!-- <p>salud-add-recipient-screen works!</p> -->
+    </div>    
 </div>

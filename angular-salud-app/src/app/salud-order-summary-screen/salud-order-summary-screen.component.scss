@@ -1,0 +1,185 @@
+
+// Header
+#head {
+    padding-bottom: 22px;
+}
+#header1 {
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;    
+}
+#header2 {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 37px;
+    color: #292929;   
+}
+
+// Order Summary
+#categorylabel1 {
+    font-weight: normal;
+    font-size: 12px;
+    /* Gray 3 */
+    color: #828282;
+    padding-bottom: 15px;
+}
+#categorylabel2 {
+    font-weight: normal;
+    font-size: 12px;
+    /* Gray 3 */
+    color: #828282;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+#categoryvalue {
+    font-weight: normal;
+    font-size: 20px;
+    /* Gray 1 */
+    color: #292929;
+}
+#food_types {
+    width: 272px;
+    height: 35px;
+    background: #F7F6F5;
+    border-radius: 10px;
+    border: none;
+    padding: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    /* Gray 2 */
+    color: #484848;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin-right: 6px;
+}
+#description {
+    min-width: 300px;
+    min-height: 131px;
+    background: #F7F6F5;
+    border-radius: 10px;
+    padding: 12px;
+    border: none;
+}
+#description::placeholder {
+    font-size: 10px;
+    font-weight: normal;
+    color: #828282;
+}
+#record-video {
+    width: 163px;
+    height: 39px;
+    background: #F7F6F5;
+    border-radius: 40px;
+    background-image: url(../../assets/images/videoIcon.png); 
+    background-size: 24px;
+    background-repeat: no-repeat;  
+    background-position-y: center;
+    background-position-x: 18px;
+    border: none;           
+    padding-right: 20px;
+        
+    text-align: right;
+
+    font-weight: normal;
+    font-size: 12px;
+    /* Gray 2 */
+    color: #484848;
+    margin-top: 21px;
+    margin-bottom: 90px;
+}
+#record-video:focus {
+    background-color: #F6C185;
+}
+#order-checkout {
+    width: 391px;
+    text-align: center;
+}
+// #recipientmerchant-info {
+//     display: inline-block;
+// }
+
+
+// Buttons
+#checkout {
+    width: 297px;
+    height: 44px;
+
+    background: #F7F6F5;
+    box-shadow: 0px 0px 10px rgba(130, 130, 130, 0.20);
+    border-radius: 12px;
+    border: none;
+
+    font-weight: 500;
+    font-size: 16px;
+    color: #292929;
+
+    display: flex;
+    padding: 4px 12px 4px 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+#checkout:hover {
+    background: #F6C185;
+    color: #FFFFFF;
+}
+#amount-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+#amountbox {
+    width: 69.79px;
+    height: 52px;
+    background: #F7F6F5;
+    border-radius: 8px;
+    border: none;
+    // margin: 0px 4px 0px 4px;
+
+    font-weight: normal;
+    font-size: 16px;
+    /* Gray 2 */
+    color: #484848;
+}
+#amountbox:focus {
+    background: #F6C185;
+}
+#Amount {
+    width: 311px;
+    height: 33px;
+    background: #F7F6F5;
+    border-radius: 10px;
+    padding-left: 12px;
+    border: none;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #828282;
+}
+
+
+// Dropdown
+#occasion {
+    width: 37px;
+    height: 25.37px;
+    background-color: #FFFFFF;
+    /* Gray 4 */
+
+    border: 1px solid #F7F6F5;
+    box-sizing: border-box;
+    border-radius: 20px;
+
+    background-image: url(../../assets/images/dropDownSignUp.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35%;
+
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding-top: 4px;
+}
+#occasion:focus{
+    background-color: #F6C185;
+}

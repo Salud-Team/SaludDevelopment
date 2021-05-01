@@ -13,12 +13,11 @@
     line-height: 37px;
     color: #292929;   
 }
-
 #search-container {
     position: relative;
     display: flex;
 
-    padding-bottom: 28px;
+    padding-bottom: 18px;
 }
 #search-icon {
     position: absolute;
@@ -39,23 +38,6 @@
     font-size: 14px;
     color: #828282;
 }
-
-
-
-// #checkdiv {
-//     background: #FFFFFF;
-//     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-//     border-radius: 5px;
-//     text-align: center;
-
-//     padding: 6px 10px 6px 10px;
-//     margin: 7px;
-
-//     cursor: pointer;
-//     font-size: 12px;
-//     font-weight: normal;
-//     color: #484848;
-// }
 #None, #checkdiv {
     background: none;
     // box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
@@ -70,18 +52,16 @@
     font-weight: normal;
     color:  #828282;
 }
-// #checkbox {
-//     position: absolute;
-//     opacity: 0;
-//     cursor: pointer;
-//     height: 0;
-//     width: 0;
-// }
-
-#checkdiv:hover {
-    background-color: #F7F6F5;
+#checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+#checkdiv:hover, #None:focus {
+    background-color:  #FEF6EF;
+    border-radius: 8px;
+    color: #F4B167;
 
 }
-// #checkbox:checked ~ #checkdiv::after{
-//     background-color: #FEF6EF;
-// }
