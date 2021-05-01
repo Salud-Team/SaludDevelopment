@@ -22,6 +22,7 @@ import { SaludThankYouOrderScreenComponent } from './salud-thank-you-order-scree
 import { SaludMerchantMainScreenComponent } from './salud-merchant-main-screen/salud-merchant-main-screen.component';
 import { SaludRedeemOrderScreenComponent } from './salud-redeem-order-screen/salud-redeem-order-screen.component';
 import { SaludRedeemSummaryScreenComponent } from './salud-redeem-summary-screen/salud-redeem-summary-screen.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SaludRedeemSummaryScreenComponent } from './salud-redeem-summary-screen
     FormsModule, 
     HttpClientModule,
     OverlayModule,
+    ClickOutsideModule,
     RouterModule.forRoot([
       {path: '', component: SaludLoadingScreenComponent}, 
       {path: 'salud-loading-screen', component: SaludLoadingScreenComponent},

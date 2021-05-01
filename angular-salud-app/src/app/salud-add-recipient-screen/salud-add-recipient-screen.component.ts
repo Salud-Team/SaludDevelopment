@@ -32,6 +32,11 @@ export class SaludAddRecipientScreenComponent implements OnInit {
     }
   }
 
+  toggleFalse(e: Event){
+    this.isOpen = false; 
+    this.style= "none";
+  }
+
 
   pullAllUsersIntoSearchDiv(){
     this.crudService.getOtherPersonalUsers(this.crudService.getSaludUser().id).subscribe((res: {}) => {
@@ -43,7 +48,8 @@ export class SaludAddRecipientScreenComponent implements OnInit {
         for (var i in res){
           var order = {
             id: res[counter].id,
-            name: res[counter].name
+            name: res[counter].name,
+            picture: res[counter].picture
           }; 
           console.log(order);
           this.recipientHTMLList.push(order); 

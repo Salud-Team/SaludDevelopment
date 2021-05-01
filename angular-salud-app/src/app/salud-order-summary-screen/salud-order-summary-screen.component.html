@@ -46,6 +46,17 @@
                 <button id="checkout" (click)="toOrderConfirmationScreen()"><span>${{amount}}</span><span>Checkout</span></button>
             </div>
         </div>
-        <!-- <p>salud-order-summary-screen works!</p> -->
+        <input *ngIf="checkCustomAmount" type="number" id="Amount" placeholder="40" (keyup)="setAmount($event.target.value)"/>
+    </div>
+    <div id="order-description">
+        <h3>Add a message: </h3>
+        <br>
+        <textarea id="description" placeholder="Type Message Here"></textarea>
+        <p></p>
+        <input type="file" id="record-video" (change)="selectFile($event)" />
+    </div>
+    <p></p>
+    <div id="order-checkout">
+        <button id="checkout" (click)="toOrderConfirmationScreen()">${{amount}}       Checkout</button>
     </div>
 </div>

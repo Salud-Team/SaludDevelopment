@@ -16,6 +16,8 @@ export class SaludOrderSummaryScreenComponent implements OnInit {
   amount: number = 0; 
   order_description: string = "";
   occasion: string = "";  
+  url: any;
+  picture_preview: string = ""; 
 
   constructor(public crudService: CrudService, public router: Router) { }
 
@@ -42,6 +44,35 @@ export class SaludOrderSummaryScreenComponent implements OnInit {
       }
     });
   }
+
+  selectFile(event: any) { //Angular 11, for stricter type
+		if(!event.target.files[0] || event.target.files[0].length == 0) {
+			//this.msg = 'You must select an image';
+			return;
+		}
+		
+		var mimeType = event.target.files[0].type;
+    var type = mimeType.split("/")[1];
+		
+    
+		if (mimeType.match(/video\/*/) == null) {
+			//this.msg = "Only images are supported";
+      console.log("Must be a video type");
+			return;
+		}
+		
+		var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+
+    console.log(event.target.files[0]);
+		
+		reader.onload = (_event) => {
+			//this.msg = "";
+			this.url = reader.result;  
+		}
+    var urlCreator = window.URL || window.webkitURL; 
+    //this.picture_preview = urlCreator.createObjectURL(event.target.files[0]); 
+	}
 
   textDisplayForCustomButton(){
     if (this.checkCustomAmount == false){
@@ -75,7 +106,8 @@ export class SaludOrderSummaryScreenComponent implements OnInit {
     if (this.amount != 0){
       this.crudService.order_description = this.order_description; 
       this.crudService.order_amount = this.amount; 
-      this.crudService.occasion = this.occasion; 
+      this.crudService.occasion = this.occasion;
+      this.crudService.video_link = this.picture_preview; 
       this.router.navigate(['/salud-order-confirmation-screen']);
     }
   }

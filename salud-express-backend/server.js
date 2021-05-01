@@ -610,7 +610,7 @@ app.post("/OrderData", (req, res) => {
     id = Math.floor(Math.random() * 1000000000) % 9999999; 
     console.log(id);
   }
-  db.salud_models.Order.insertMany([{id: id, gifter_id: req.body.gifter_id, recipient_id: req.body.recipient_id, merchant_id: req.body.merchant_id, amount: req.body.amount, description: req.body.description, redeemed: false}])
+  db.salud_models.Order.insertMany([{id: id, gifter_id: req.body.gifter_id, recipient_id: req.body.recipient_id, merchant_id: req.body.merchant_id, amount: req.body.amount, description: req.body.description, redeemed: false, video: req.body.video}])
   .then(function(){
     console.log("New order created");
 
@@ -668,8 +668,8 @@ async function deleteExistingData(){
 
 function insertDummyData(){
 
- db.salud_models.SaludUser.insertMany([{name: 'Test User', id: 0123, phone_num: 2103469382, email: "testuser@gmail.com", password: "test123", personalUser: true},
-{name: 'Test Recipient', id: 0125, phone_num: 2192069382, email: "testuser2@gmail.com", password: "test100", personalUser: true},
+ db.salud_models.SaludUser.insertMany([{name: 'Test User', id: 0123, phone_num: 2103469382, email: "testuser@gmail.com", password: "test123", personalUser: true, picture: 'C:\\Users\\maste\\Desktop\\SaludDevelopment\\SaludDevelopment\\angular-salud-app\\src\\assets\\images\\external-content.duckduckgo.com.jpg'},
+{name: 'Test Recipient', id: 0125, phone_num: 2192069382, email: "testuser2@gmail.com", password: "test100", personalUser: true,  picture: 'C:\\Users\\maste\\Desktop\\SaludDevelopment\\SaludDevelopment\\angular-salud-app\\src\\assets\\images\\external-content.duckduckgo.com.jpg'},
 {name: 'Food Place 1', id: 9998, phone_num: 2130984732, email: "fooduser1@gmail.com", password: "test124", personalUser: false},
 {name: 'Food Place 2', id: 9997, phone_num: 2130984742, email: "fooduser2@gmail.com", password: "test1354", personalUser: false},
 {name: 'Food Place 3', id: 9967, phone_num: 2133284742, email: "fooduser3@gmail.com", password: "test154", personalUser: false}]).then(function(){

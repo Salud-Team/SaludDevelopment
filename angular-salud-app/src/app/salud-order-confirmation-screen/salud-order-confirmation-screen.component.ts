@@ -22,7 +22,7 @@ export class SaludOrderConfirmationScreenComponent implements OnInit {
         console.log("User no longer exists");
       }
       else{
-        this.recipient_name = res[0].name; 
+        this.recipient_name = res[0].name;
       }
     }); 
     this.crudService.getMerchantById(this.crudService.merchant_id).subscribe((res: {}) => {
@@ -38,7 +38,7 @@ export class SaludOrderConfirmationScreenComponent implements OnInit {
 
 
   placeOrder(){
-    this.crudService.createOrder(this.crudService.savedSaludUser.id, this.crudService.recipient_id, this.crudService.merchant_id, this.crudService.order_amount, this.crudService.order_description).subscribe((res: {}) => {
+    this.crudService.createOrder(this.crudService.savedSaludUser.id, this.crudService.recipient_id, this.crudService.merchant_id, this.crudService.order_amount, this.crudService.order_description, this.crudService.video_link).subscribe((res: {}) => {
       this.router.navigate(['/salud-thank-you-order-screen']);
       /*
       if (res == undefined){

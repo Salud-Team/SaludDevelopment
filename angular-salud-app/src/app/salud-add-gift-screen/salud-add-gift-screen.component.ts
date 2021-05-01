@@ -20,6 +20,7 @@ export class SaludAddGiftScreenComponent implements OnInit {
   constructor(public crudService: CrudService, public router: Router) { }
 
   ngOnInit(): void {
+    this.cities.push(""); 
     this.crudService.getMerchantUsersWithSaludUserInfo().subscribe((res: {}) => {
       if (res == undefined){
         console.log("Didnt work");
@@ -31,9 +32,14 @@ export class SaludAddGiftScreenComponent implements OnInit {
             id: res[counter].id,
             name: res[counter].name,
             location: res[counter].merchant.location, 
+            city: res[counter].merchant.city,
+            state: res[counter].merchant.state, 
+            zip_code: res[counter].merchant.zip_code,
             food_type: res[counter].merchant.food_type
           }; 
           this.merchants.push(merchInfo); 
+          var city_state = merchInfo.city + ", " + merchInfo.state; 
+          this.cities.push(city_state);
           counter += 1; 
         }
       }
@@ -42,10 +48,12 @@ export class SaludAddGiftScreenComponent implements OnInit {
 
   turnOthersOff(s: string){
     if(s == "Beer"){
+      this.beerFilter = true; 
       this.wineFilter = false;
     } 
     else if(s == "Wine"){
       this.beerFilter = false;
+      this.wineFilter = true;
     } 
   }
 
@@ -69,8 +77,9 @@ export class SaludAddGiftScreenComponent implements OnInit {
   }
 
   showItem(name: string){
+    console.log(this.filtered_city);
     console.log(this.value + " is this");
-    if ((name.includes(this.value) || this.value == undefined) && this.hasBeer(name) && this.hasWine(name)){
+    if (((name.includes(this.value))|| this.value == undefined) && this.hasBeer(name) && this.hasWine(name) && name.includes(this.filtered_city)){
       return true;
     }
     else{
