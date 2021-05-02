@@ -13,7 +13,7 @@
         <div id="filter-buttons">
             <button id="None" name="None" (click)="clearFilters()">None</button>
             <span id="checkdiv"><button name="Beer" (click)="turnOthersOff('Beer')">Beer</button></span>
-            <span id="checkdiv"><button type="checkbox" id="checkbox" name="Wine" (click)="turnOthersOff('Wine')">Wine </button></span>
+            <span id="checkdiv"><button name="Wine" (click)="turnOthersOff('Wine')">Wine </button></span>
         </div>
         <div *ngFor="let item of merchants">
             <p>

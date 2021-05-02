@@ -51,7 +51,7 @@ export class SaludAddRecipientScreenComponent implements OnInit {
             name: res[counter].name,
             picture: res[counter].picture
           }; 
-          console.log(order);
+          console.log(order.picture);
           this.recipientHTMLList.push(order); 
           counter += 1; 
         }
