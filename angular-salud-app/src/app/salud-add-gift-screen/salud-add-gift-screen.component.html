@@ -12,17 +12,16 @@
         </div>      
         <div id="filter-buttons">
             <button id="None" name="None" (click)="clearFilters()">None</button>
-            <span id="checkdiv"><button name="Beer" (click)="turnOthersOff('Beer')">Beer</button></span>
-            <span id="checkdiv"><button type="checkbox" id="checkbox" name="Wine" (click)="turnOthersOff('Wine')">Wine </button></span>
+            <span><button id="checkdiv" name="Beer" (click)="turnOthersOff('Beer')">Beer</button></span>
+            <span><button id="checkdiv" type="checkbox" name="Wine" (click)="turnOthersOff('Wine')">Wine </button></span>
         </div>
         <div *ngFor="let item of merchants">
             <p>
                 <label name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name + ' ' + item.location + ' ' + item.city + ', ' + item.state + ' ' + item.zip_code + ' ' + item.food_type)">
-                    {{item.name}}
-                    <p></p>
-                    Serves: {{item.food_type}}
-                    <p></p>
-                    Address: {{item.location}} {{item.city}}, {{item.state}} {{item.zip_code}}</label>
+                    <div id="itemservecontainer"><p id="itemserve">{{item.food_type}}</p></div>
+                    <p id="itemname">{{item.name}}</p>
+                    <p id="itemaddress">{{item.location}} {{item.city}}, {{item.state}} {{item.zip_code}}</p>
+                    </label>
             </p>
         </div>
     </div>

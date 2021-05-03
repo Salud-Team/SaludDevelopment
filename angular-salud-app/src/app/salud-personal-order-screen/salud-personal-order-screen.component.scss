@@ -18,6 +18,8 @@
     height: 34px;
     border: 1px solid #F7F6F5;
     border-radius: 10px;
+    margin-left: 64px;
+    margin-bottom: 26px;
 }
 #renderEnvironment, #renderPersonal {
     background: none;
@@ -25,9 +27,93 @@
     width: 93.5px;
     height: 34px;
     border-radius: 10px;
+}
+#renderEnvironment:focus {
+    background: #FEF6EF;
+}
+#renderPersonal:focus {
+    background: #F7F6F5;
+}
+#buttonIMG {
     vertical-align: middle;
 }
-#renderEnvironment:focus, #renderPersonal:focus {
-    background: #FEF6EF;
-    src: url(../../assets/images/peopleIconorange.svg);
+
+#giftedOrders, #receivedOrders {
+    background: none;    
+    border: none;
+    border-radius: 6px;
+
+    // Font
+    font-weight: 500;
+    font-size: 14px;
+    color: #828282;
+
+    margin: 0px 16px 0px 16px;
+}
+#giftedOrders:focus, #receivedOrders:focus {
+    background-color:#FEF6EF;  
+    padding: 4px 10px 4px 10px;
+    color: #F4B167;
+}
+
+
+// Recieved Orders Page (Reedem)
+#order-label {
+    display: inline-flex;
+    // margin-bottom: 34px;
+}
+#recievedorderprofilepics {
+    width: 71px;
+    height: 71px;
+}
+#recipientpic {
+    width: 47px;
+    height: 47px;
+    border-radius: 7px;
+    // top: 0px;
+    // left: 0px;
+    z-index: -1;
+}
+#senderpic {
+    position: relative;
+    width: 47px;
+    height: 47px;
+    border-radius: 7px;
+    // top: 24px;
+    // left: 24px;
+    z-index: 2;
+}
+#textsenderrecipientbold {
+    margin-left: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    /* Gray 2 */
+    color: #484848;
+}
+#textsenderrecipient {
+    margin-left: 5px;
+    font-weight: normal;
+    font-size: 12px;
+    /* Gray 2 */
+    color: #484848;
+}
+#textgift {
+    font-weight: 500;
+    font-size: 16px;
+    /* Gray 1 */
+    color: #292929;
+    padding-bottom: 34px;
+}
+
+// Gifted Orders Page (Sent)
+#orders-gifted p{
+    font-weight: normal;
+    font-size: 12px;
+    /* Gray 2 */
+    color: #484848;
+}
+
+
+#largebtn {
+    margin-left: 11px;
 }

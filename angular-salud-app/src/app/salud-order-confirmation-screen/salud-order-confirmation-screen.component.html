@@ -22,7 +22,7 @@
                 <p id="merchantaddress">{{merchant_address}}</p>
             </div>
             <div id="giftinfo"></div>
-                <label id="giftinfo">{{crudService.food_type}}  {{crudService.order_amount}}</label>
+                <span id="giftinfo1">{{crudService.food_type}}</span><span id="giftinfo2">{{crudService.order_amount}}</span>
             </div>
             <div id="pricing-info">
                 <div id="pricinginfodiv"><span id="pricinglabel">Subtotal: </span><span id="pricingvalue">{{crudService.order_amount}}</span></div>
@@ -35,9 +35,9 @@
                 <button id="paymentoptions" data-dropdown="drop"> Payment Options </button>
                     <!-- Needs CSS -->
                     <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
-                        <li>Apple Pay</li>
-                        <li>Google Play Services</li>
-                        <li>PayPal</li>
+                        <li id="optionpay">Apple Pay</li>
+                        <li id="optionpay">Google Play Services</li>
+                        <li id="optionpay">PayPal</li>
                     </ul>
             </div>
             <p></p>
