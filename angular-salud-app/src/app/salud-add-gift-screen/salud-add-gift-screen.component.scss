@@ -47,21 +47,86 @@
 
     padding: 8px;
     margin: 8px;
-    cursor: pointer;
+    // cursor: pointer;
     font-size: 12px;
     font-weight: normal;
     color:  #828282;
 }
-#checkbox {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
+// #checkbox {
+//     position: absolute;
+//     opacity: 0;
+//     cursor: pointer;
+//     height: 0;
+//     width: 0;
+// }
 #checkdiv:hover, #None:focus {
     background-color:  #FEF6EF;
     border-radius: 8px;
     color: #F4B167;
+
+}
+
+#cities {
+    width: 315px;
+    height: 33px;
+
+    background-color: #F7F6F5; 
+    background-image: url(../../assets/images/dropDownSignUp.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 280px;
+    background-size: 4%;
+    border: none;
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-left: 11px;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+
+    font-size: 12px;
+    font-weight: normal;
+    color: #484848;
+}
+
+#itemname {
+    font-weight: 500;
+    font-size: 14px;
+    /* Gray 1 */
+
+    color: #292929;
+    margin-bottom: 6px;
+}
+#itemservecontainer {
+    text-align: center;
+    width: 48px;
+    height: 28px;
+    background: #E4F2FA;
+    border-radius: 7px;
+    margin-bottom: 4px;
+}
+#itemserve {
+    // background: #E4F2FA;
+    // border-radius: 7px;
+    padding: 4px;
+    font-weight: 500;
+    font-size: 12px;
+    /* Gray 1 */
+
+    color: #292929;
+    vertical-align: middle;
+}
+#itemaddress {
+    font-weight: 350;
+    font-size: 10px;
+    /* Gray 3 */
+
+    color: #828282;
+    margin-bottom: 18px;
+
 
 }
