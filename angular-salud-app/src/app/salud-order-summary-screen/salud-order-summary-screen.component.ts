@@ -9,7 +9,7 @@ import { CrudService } from '../shared/crud.service';
 })
 export class SaludOrderSummaryScreenComponent implements OnInit {
 
-  recipient_name: String = ""; 
+  recipient_name: String = "New User"; 
   options = []; 
   chosen_option: string = ""; 
   checkCustomAmount: boolean = false;

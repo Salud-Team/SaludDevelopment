@@ -10,7 +10,8 @@ import { CrudService } from '../shared/crud.service';
 export class SaludRedeemSummaryScreenComponent implements OnInit {
 
   qrCode: any; 
-  picture: string = "/angular-salud-app/src/assets/images/giftBox.png"; 
+  description: string = ""; 
+  picture: string = "assets/images/giftBox.png"; 
 
   constructor(public crudService: CrudService, public router: Router) { }
 
@@ -35,6 +36,8 @@ export class SaludRedeemSummaryScreenComponent implements OnInit {
         console.log("Server not up");
       }
       else{ 
+        console.log(res);
+        this.description = res[0].description; 
         this.qrCode = res[0].qrCode; 
         this.picture = this.qrCode; 
       }

@@ -9,12 +9,12 @@
             </div> -->
             <div id="location-info">
                 <p>For: </p>
+                <img src="assets\images\external-content.duckduckgo.com.jpg" width="100px" height="100px">
                 <h1><span id="value1">{{recipient_name}}'s</span><span id="value2"> {{crudService.occasion}}</span></h1>
                 <div id="recipient_information">
                     <!-- recipent info -->
-                    <div id="recipientinfodiv"><span id="recipientinfolabel">Email</span><span id="recipientinfovalue"></span></div>
-                    <div id="recipientinfodiv"><span id="recipientinfolabel">Phone</span><span id="recipientinfovalue"></span></div>
-                    <div id="recipientinfodiv"><span id="recipientinfolabel">Address</span><span id="recipientinfovalue"></span></div>
+                    <div id="recipientinfodiv"><span id="recipientinfolabel">Email: {{recipient_email}}</span><span id="recipientinfovalue"></span></div>
+                    <div id="recipientinfodiv"><span id="recipientinfolabel">Phone: {{recipient_phone}}</span><span id="recipientinfovalue"></span></div>
                 </div>
             </div>
             <div id="merchant-info">
@@ -30,15 +30,14 @@
                 <div id="pricinginfodiv"><span id="pricinglabel">Processing Fee: </span><span id="pricingvalue">${{crudService.order_amount/10}}.00</span></div>
             </div>
             <div id="checkout">
-                <label id="checkoutdiv"><span id="checkoutlabel">Total:</span><span id="checkoutvalue">{{total}}</span></label>
+                <label id="checkoutdiv"><span id="checkoutlabel">Total:</span><span id="checkoutvalue">${{crudService.order_amount+crudService.order_amount/10}}.00</span></label>
                 <p></p>
-                <button id="paymentoptions" data-dropdown="drop"> Payment Options </button>
-                    <!-- Needs CSS -->
-                    <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
-                        <li>Apple Pay</li>
-                        <li>Google Play Services</li>
-                        <li>PayPal</li>
-                    </ul>
+                Payment Options: 
+                <select id="paymentoptions">
+                    <option value="Apple Pay">Apple Pay</option>
+                    <option value="Google Play Services">Google Play Services</option>
+                    <option value="PayPal">PayPal</option>
+                </select>
             </div>
             <p></p>
             <div id="create-order">

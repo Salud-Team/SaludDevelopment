@@ -75,7 +75,10 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
   selectRecipientId(value){
     //this.chosenRecipientId = value; 
     console.log(value);
-    this.crudService.redeemed_order = value; 
+    var v = value.split(","); 
+    this.crudService.redeemed_order = v[0]; 
+    this.crudService.redeemed_gifter = v[1]; 
+    this.crudService.redeemed_merchant = v[2]; 
     this.router.navigate(['/salud-redeem-summary-screen']);
   }
 

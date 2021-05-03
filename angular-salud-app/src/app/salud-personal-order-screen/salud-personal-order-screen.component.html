@@ -28,21 +28,21 @@
                 <div id="outer-orders-gifted" *ngIf="renderGifted == true">
                     <div id="orders-gifted" [innerHTML]="order"></div>
                     <p><br></p>
-                    <div id="createOrder">
-                        <button (click)="createNewOrder()"> Create Order </button>
-                    </div>
                 </div>
                 <div id="outer-orders-received"  *ngIf="renderGifted == false">
                     <div id="orders-received" *ngFor="let order of orderReceived">
                         <div class='order-label'>
-                            <label (click)='selectRecipientId(order.id)'>
-                                <img width='50px' height='25px' src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F11250%2F39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg&f=1&nofb=1" /> <img width='50px' height='25px' src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F11250%2F39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg&f=1&nofb=1" />{{order.gifter_name}} sent to You items from {{order.merchant_name}} 
+                            <label (click)='selectRecipientId(order.id + "," + order.gifter_name + "," +  order.merchant_name)'>
+                                <img width='50px' height='25px' src="assets\images\external-content.duckduckgo.com.jpg" /> <img width='50px' height='25px' src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F11250%2F39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg&f=1&nofb=1" />{{order.gifter_name}} sent to You items from {{order.merchant_name}} 
                             </label>  
                             <p>
                         </div>
                     </div>
                     <p><br></p>
                     <!--<div id="redeemOrder"><button (click)="redeemAllOrders()"> Redeem Order </button></div>-->
+                </div>
+                <div id="createOrder">
+                    <button (click)="createNewOrder()"> Create Order </button>
                 </div>
             </div>
         </div>
