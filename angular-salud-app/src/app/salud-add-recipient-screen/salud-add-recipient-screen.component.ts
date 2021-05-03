@@ -33,7 +33,7 @@ export class SaludAddRecipientScreenComponent implements OnInit {
   }
 
   toggleFalse(e: Event){
-    this.isOpen = false; 
+    this.isOpen = true; 
     this.style= "none";
   }
 
@@ -51,7 +51,7 @@ export class SaludAddRecipientScreenComponent implements OnInit {
             name: res[counter].name,
             picture: res[counter].picture
           }; 
-          console.log(order);
+          console.log(order.picture);
           this.recipientHTMLList.push(order); 
           counter += 1; 
         }
@@ -82,6 +82,7 @@ export class SaludAddRecipientScreenComponent implements OnInit {
   }
 
   submitEmail(name, email, num){
+    this.toggleOverlay();
     if (email == "" && num == ""){
       //Prompt for input on one
     }

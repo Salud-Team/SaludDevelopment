@@ -33,24 +33,25 @@
                 <div id="outer-orders-gifted" *ngIf="renderGifted == true">
                     <div id="orders-gifted" [innerHTML]="order"></div>
                     <p><br></p>
-                    <!-- <div id="createOrder">
-                        <button (click)="createNewOrder()"> Create Order </button>
-                    </div> -->
                 </div>
                 <div id="outer-orders-received"  *ngIf="renderGifted == false">
                     <div id="orders-received" *ngFor="let order of orderReceived">
                         <div class='order-label'>
-                            <label (click)='selectRecipientId(order.id)'>
+                            <!-- <label (click)='selectRecipientId(order.id)'>
                                 <span id="recievedorderprofilepics">
                                     <img id="recipientpic" src={{order.recipient_pic}} /><img id="senderpic" src={{order.gifter_pic}} />
-                                </span>
-                                <span id="textsenderrecipientbold">{{order.gifter_name}}</span><span id="textsenderrecipient">sent to</span><span id="textsenderrecipientbold">You</span><br><span id="textgift">{{order.merchant_name}}</span>
+                                </span> -->
+                            <label (click)='selectRecipientId(order.id + "," + order.gifter_name + "," +  order.merchant_name)'>
+                                <img width='50px' height='25px' src="assets\images\external-content.duckduckgo.com.jpg" /> <img width='50px' height='25px' src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F11250%2F39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg&f=1&nofb=1" /><span id="textsenderrecipientbold">{{order.gifter_name}}</span><span id="textsenderrecipient">sent to</span><span id="textsenderrecipientbold">You</span><br><span id="textgift">{{order.merchant_name}}</span>
                             </label>  
                             <p>
                         </div>
                     </div>
                     <p><br></p>
                     <!--<div id="redeemOrder"><button (click)="redeemAllOrders()"> Redeem Order </button></div>-->
+                </div>
+                <div id="createOrder">
+                    <button (click)="createNewOrder()"> Create Order </button>
                 </div>
             </div>
         </div>

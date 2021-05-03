@@ -2,14 +2,23 @@
     
 </div>
 <div id="body">
+    <div>
+        From: {{crudService.redeemed_gifter}}
+        <p></p>
+        Use At: {{crudService.redeemed_merchant}}
+        <p></p>
+    </div>
     <div id="gift">
         <img width="200px" height="200px" src={{picture}} (click)="loadOrderQRCode()">
         <p>
         </p>
-        <p>Tap to open the gift</p>
     </div>
     <div id="order-info">
-
+        <p>
+            {{crudService.redeemed_gifter}} said: 
+            <br>
+            {{description}}
+        </p>
     </div>
 </div>
 

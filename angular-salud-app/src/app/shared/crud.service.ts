@@ -76,7 +76,9 @@ export class CrudService {
   food_type: string; 
   occasion: string; 
   video_link: string; 
-  redeemed_order: string; 
+  redeemed_order: string;
+  redeemed_gifter: string; 
+  redeemed_merchant: string;  
 
   constructor(public httpClient: HttpClient) { }
 
