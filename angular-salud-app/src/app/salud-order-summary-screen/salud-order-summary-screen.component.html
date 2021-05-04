@@ -50,7 +50,7 @@
 
         <div id="order-description">
             <h3 id="categorylabel2">Add a message:</h3>
-            <textarea id="description" placeholder="Type your message here..."></textarea>
+            <textarea id="description" placeholder="Type your message here..." (keyup)="setDescription($event.target.value)"></textarea>
             <label id="record-video" for="record-videoupload"><img id="vidIcon" src="../../assets/images/vidIcon.svg" alt="">Record A Video</label>
             <input type="file" id="record-videoupload" (change)="selectFile($event)" />
         <p></p>

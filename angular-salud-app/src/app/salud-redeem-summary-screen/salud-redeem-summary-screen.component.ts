@@ -38,6 +38,7 @@ export class SaludRedeemSummaryScreenComponent implements OnInit {
       else{ 
         console.log(res);
         this.description = res[0].description; 
+        console.log(this.description);
         this.qrCode = res[0].qrCode; 
         this.picture = this.qrCode; 
       }
