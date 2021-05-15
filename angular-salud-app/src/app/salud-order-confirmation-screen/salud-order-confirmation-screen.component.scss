@@ -42,6 +42,11 @@
     display: flex;
     justify-content: space-between;
 }
+#recipientpic {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+}
 #recipientinfolabel {
     font-weight: 500;
     font-size: 12px;
@@ -124,6 +129,8 @@
     width: 297px;
     height: 46px;
 
+    margin-bottom: 20px;
+
     background: #E4F2FA;
     border-radius: 12px;
     // padding: 8px;
@@ -155,6 +162,7 @@
     border: none;
     padding: 8px 12px 8px 12px;
     margin-top: 12px;
+    margin-bottom: 16px;
 
     font-weight: 500;
     font-size: 10px;
