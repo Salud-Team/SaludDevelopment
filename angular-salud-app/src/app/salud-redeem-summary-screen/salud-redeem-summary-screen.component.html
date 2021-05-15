@@ -1,25 +1,21 @@
-<div id="head">
-    
-</div>
-<div id="body">
-    <div>
-        From: {{crudService.redeemed_gifter}}
-        <p></p>
-        Use At: {{crudService.redeemed_merchant}}
-        <p></p>
-    </div>
-    <div id="gift">
-        <img width="200px" height="200px" src={{picture}} (click)="loadOrderQRCode()">
-        <p>
-        </p>
-    </div>
-    <div id="order-info">
-        <p>
-            {{crudService.redeemed_gifter}} said: 
-            <br>
-            {{description}}
-        </p>
+<div class="mobile-screen">
+    <div class="screen-container">
+        <div id="body">
+            <div id="gift">
+                <img width="200px" height="200px" src="../../assets/images/giftBox.svg" (click)="loadOrderQRCode()">
+                <p id="tap" >Tap to open the gift</p>
+            </div>
+            <div id="order-info">
+                <div id="senderinfodiv">
+                    <span id="senderinfo">From: </span><p id="value"> {{crudService.redeemed_gifter}}</p>
+                </div>
+                <div id="giftinfodiv">
+                    <span id="giftinfo">For: </span><p id="value"> {{crudService.redeemed_merchant}}</p>
+                </div>
+                <div id="message">{{description}}</div>
+            </div>
+        </div>
     </div>
 </div>
 
-<p>salud-redeem-summary-screen works!</p>
+<!-- <p>salud-redeem-summary-screen works!</p> -->
