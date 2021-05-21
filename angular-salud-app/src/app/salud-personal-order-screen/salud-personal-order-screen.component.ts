@@ -11,7 +11,7 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
 
   SaludUser; 
   headerText: string; 
-  order: string = "";
+  order = [];
   orderReceived = [];
   renderGifted: boolean = false; 
   renderPersonal: boolean = false; 
@@ -33,9 +33,18 @@ export class SaludPersonalOrderScreenComponent implements OnInit {
         console.log(res);
         var counter = 0; 
         for (var i in res){
+          var newOrder = {
+            recipient_name: res[counter].recipient.name,
+            merchant_name: res[counter].merchant.name,
+            profile_pic: res[counter].gifter.picture,
+            recipient_pic: res[counter].recipient.picture
+          }
+          this.order.push(newOrder);
+          /*
           this.order += "<div class='order-label'><label>" + "<img width='50px' height='25px' src=" + "\'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F11250%2F39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg&f=1&nofb=1\'" + "/>" +
           "<img width='50px' height='25px' src=" + "\'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F11250%2F39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg&f=1&nofb=1\'" + "/>" 
           + "You sent to " + res[counter].recipient.name  + " items from " + res[counter].merchant.name + ".<p>"  +  "<label></div>";
+          */
           counter += 1; 
         }
       }

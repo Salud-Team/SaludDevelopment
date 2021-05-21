@@ -11,7 +11,7 @@ export class SaludRedeemSummaryScreenComponent implements OnInit {
 
   qrCode: any; 
   description: string = ""; 
-  picture: string = "assets/images/giftBox.png"; 
+  picture: string = "assets/images/giftBox.svg"; 
 
   constructor(public crudService: CrudService, public router: Router) { }
 
@@ -31,6 +31,7 @@ export class SaludRedeemSummaryScreenComponent implements OnInit {
   }
 
   loadOrderQRCode(){
+    console.log(this.picture)
     this.crudService.createOrderQRCode(this.crudService.redeemed_order).subscribe((res: {}) => {
       if (res == undefined){
         console.log("Server not up");

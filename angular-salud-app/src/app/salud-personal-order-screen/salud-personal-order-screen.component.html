@@ -31,7 +31,23 @@
                     <button id="receivedOrders" (click)="renderGifted = false">Redeem Orders</button>
                 </div>
                 <div id="outer-orders-gifted" *ngIf="renderGifted == true">
-                    <div id="orders-gifted" [innerHTML]="order"></div>
+                    <div id="orders-gifted" *ngFor="let ordr of order">
+                        <div class='order-label'>
+                            <label id="hiddenlabel">
+                                <span id="recievedorderprofilepics">
+                                    <span>
+                                        <img  id="recipientpic" src={{ordr.recipient_pic}} />
+                                        <img id="senderpic" src={{ordr.profile_pic}} />
+                                    </span>
+                                </span>
+                                <span id="textinfo"> 
+                                    <span id="textsenderrecipientbold">You</span><span id="textsenderrecipient">sent to</span><span id="textsenderrecipientbold"> {{ordr.recipient_name}}</span>
+                                    <p id="textgift">{{ordr.merchant_name}}</p>
+                                </span>
+                            </label>  
+                            <p>
+                        </div>
+                    </div>
                     <p><br></p>
                 </div>
                 <div id="outer-orders-received"  *ngIf="renderGifted == false">
@@ -40,8 +56,8 @@
                             <label id="hiddenlabel" (click)='selectRecipientId(order.id + "," + order.gifter_name + "," +  order.merchant_name)'>
                                 <span id="recievedorderprofilepics">
                                     <span>
-                                        <img  id="recipientpic" src="assets\images\external-content.duckduckgo.com.jpg" />
-                                        <img id="senderpic" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuser-images.githubusercontent.com%2F11250%2F39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg&f=1&nofb=1" />
+                                        <img  id="recipientpic" src={{order.recipient_pic}} />
+                                        <img id="senderpic" src={{order.gifter_pic}} />
                                     </span>
                                 </span>
                                 <span id="textinfo"> 
