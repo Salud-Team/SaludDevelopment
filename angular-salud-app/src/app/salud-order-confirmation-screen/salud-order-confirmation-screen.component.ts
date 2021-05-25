@@ -14,6 +14,7 @@ export class SaludOrderConfirmationScreenComponent implements OnInit {
   merchant_address: String = ""; 
   recipient_email: String = ""; 
   recipient_phone: String = ""; 
+  recipient_pic: String = ""; 
   total: number = 0; 
 
   constructor(public crudService: CrudService, public router: Router) { }
@@ -26,7 +27,8 @@ export class SaludOrderConfirmationScreenComponent implements OnInit {
       else{
         this.recipient_name = res[0].name;
         this.recipient_email = res[0].email; 
-        this.recipient_phone = res[0].phone; 
+        this.recipient_phone = res[0].phone;
+        this.recipient_pic = res[0].picture; 
         
       }
     }); 

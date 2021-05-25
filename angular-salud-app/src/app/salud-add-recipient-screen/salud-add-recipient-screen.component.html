@@ -9,7 +9,7 @@
                 <input type="text" id="searchbar" placeholder="Search" (keyup)="filter($event.target.value)">
             </div>        <div *ngFor="let item of recipientHTMLList">
                 <p>
-                    <button id="recipientname" name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)"><!--<img width="50px" height="50px" src={{item.picture}}>--><img width="50px" height="50px" src="assets\images\external-content.duckduckgo.com.jpg">{{item.name}}</button>
+                    <button id="recipientname" name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)"><!--<img width="50px" height="50px" src={{item.picture}}>--><img width="50px" height="50px" src={{item.picture}}>{{item.name}}</button>
                 </p>
             </div>
         </div>
