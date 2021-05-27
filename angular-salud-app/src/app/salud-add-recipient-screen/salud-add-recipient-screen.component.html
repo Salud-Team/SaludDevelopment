@@ -8,9 +8,9 @@
                 <img id="search-icon" src="../../assets/images/searchIcon.svg" alt="">
                 <input type="text" id="searchbar" placeholder="Search" (keyup)="filter($event.target.value)">
             </div>        <div *ngFor="let item of recipientHTMLList">
-                <p>
-                    <button id="recipientname" name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)"><!--<img width="50px" height="50px" src={{item.picture}}>--><img width="50px" height="50px" src={{item.picture}}>{{item.name}}</button>
-                </p>
+                <div id="recipientsection">
+                    <button id="recipientname" name="item.name" (click)="selectRecipientId(item.id)" *ngIf="showItem(item.name)"><!--<img width="50px" height="50px" src={{item.picture}}>--><img width="50px" height="50px" src={{item.picture}} id="addrecipientpic">{{item.name}}</button>
+                </div>
             </div>
         </div>
         <div id="overlay-div">

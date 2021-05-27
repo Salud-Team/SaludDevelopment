@@ -63,6 +63,12 @@
     // flex-direction: row;
     // margin: 34px 0px 34px 0px;
 // }
+#outer-orders-gifted, #outer-orders-received{
+    margin-top: 12px;
+}
+#orders-label {
+    margin: 5px, 0px,0px,0px;
+}
 #recievedorderprofilepics {
     display: inline-block;
     width: 71px;
@@ -77,7 +83,7 @@
     // left: 0;
     width: 47px;
     height: 47px;
-    // border-radius: 7px;
+    border-radius: 7px;
 
     
     // top: 0px;
@@ -92,7 +98,7 @@
     // position: relative;
     // top: 24px;
     // left: -24px;
-    // border-radius: 7px;
+    border-radius: 7px;
     // top: 24px;
     // left: 24px;
 }
@@ -126,12 +132,12 @@
 }
 
 // Gifted Orders Page (Sent)
-#orders-gifted p{
-    font-weight: normal;
-    font-size: 12px;
-    /* Gray 2 */
-    color: #484848;
-}
+// #orders-gifted p{
+//     font-weight: normal;
+//     font-size: 12px;
+//     /* Gray 2 */
+//     color: #484848;
+// }
 
 // fixed button
 #largebtn {
